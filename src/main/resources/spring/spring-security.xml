@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-4.2.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	<http auto-config="true">
+		<intercept-url pattern="/test**" access="hasRole('ROLE_ADMIN')" />
+
+		<!--会话管理 -->
+		<session-management>
+			<!-- 設置后登陆的将先登录的踢出系统 -->
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="false" />
+		</session-management>
+		
+		<!-- 尝试访问没有权限的页面时跳转的页面 -->		 	 
+		<access-denied-handler error-page="/403" />
+		
+		<form-login login-page="/Login" username-parameter="username"
+			password-parameter="password" login-processing-url="/login"
+			default-target-url="/admin" authentication-failure-url="/Login?error" />
+		<logout logout-success-url="/Login?logout" />
+
+		<!-- enable csrf protection -->
+		<csrf disabled="true" /> <!--csrf保护功能禁用 -->
+		
+	</http>
+	
+	<beans:import resource="classpath:spring/spring-db.xml"/>
+
+	<authentication-manager>
+		<authentication-provider>
+		<jdbc-user-service data-source-ref="dataSource" 
+		users-by-username-query=
+		"select userName,password, enabled from SWIPE.user_data where username=? and ENABLED=1"
+		authorities-by-username-query=
+		"select t.username,t.role from swipe.USER_ROLES t where t.username = ?"
+		/>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
