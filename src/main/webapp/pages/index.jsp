@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8"/>
 	<title>FoxLink品質資訊與數位分析 系統</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="easyUI/themes/default/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="easyUI/themes/icon.css"/>
+	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./resources/easyUI/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/easyUI/themes/icon.css"/>
     <!-- <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"> -->
-	<script type="text/javascript" src="easyUI/jquery.min.js"></script>
-	<script type="text/javascript" src="easyUI/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="JS/NavBarMenu.js"></script>
-	<script type="text/javascript" src="JS/nav-main.js"></script>
-	<script type="text/javascript"src="JS/tab-look.js"></script>
+	<script type="text/javascript" src="./resources/easyUI/jquery.min.js"></script>
+	<script type="text/javascript" src="./resources/easyUI/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="./resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./resources/JS/NavBarMenu.js"></script>
+	<script type="text/javascript" src="./resources/JS/nav-main.js"></script>
+	<script type="text/javascript"src="./resources/JS/tab-look.js"></script>
 	<style type="text/css">
 		*{
 			margin:0;

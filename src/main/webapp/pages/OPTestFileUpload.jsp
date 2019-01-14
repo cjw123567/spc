@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/SubPage.css">
-	<script type="text/javascript" src="jq/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
+	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 	<form class="form-horizontal" action="" method="get" role="form">

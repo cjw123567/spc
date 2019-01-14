@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>FoxLink品質資訊與數位分析 系統</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/SubPage.css">
-	<script type="text/javascript" src="jq/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
+	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<form class="form-horizontal" action="" method="get" role="form">

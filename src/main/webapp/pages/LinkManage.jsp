@@ -1,14 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>FoxLink品質資訊與數位分析 系統</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/SubPage.css">
-	<script type="text/javascript" src="jq/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<%-- <c:url value="/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css" var="BootStrapCSS" />
+	<c:url value="/resources/css/SubPage.css" var="SubPageCSS" />
+	<link href="${BootStrapCSS}" rel="stylesheet">
+	<link href="${SubPageCSS}" rel="stylesheet"> --%>
+	<link rel="stylesheet" type="text/css" href="../resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
+<%--<c:url value="/resources/jq/jquery-1.11.3.min.js" var="JqueryJS" />
+	<c:url value="/resources/bootstrap-3.3.7-dist/js/bootstrap.min.js" var="BootStrapJS" />
+	<script src="${JqueryJS}" type="text/javascript"></script>
+	<script src="${BootStrapJS}" type="text/javascript"></script> --%>
+	 <script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script> 
+	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<form class="form-horizontal" action="" method="get" role="form">
