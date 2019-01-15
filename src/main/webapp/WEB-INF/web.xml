@@ -85,7 +85,7 @@
 
 
 <welcome-file-list>
-		<welcome-file>/login</welcome-file>
+		<welcome-file>/Login</welcome-file>
 
 
 	</welcome-file-list>
