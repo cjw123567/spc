@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 	<http auto-config="true">
-		<!-- <intercept-url pattern="/test**" access="hasRole('ROLE_ADMIN')" />  -->
+		<intercept-url pattern="/test**" access="hasRole('ROLE_ADMIN')" /> 
 		
 		<headers><frame-options disabled="true"/></headers>
 
