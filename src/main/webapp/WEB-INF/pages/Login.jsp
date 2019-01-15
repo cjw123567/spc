@@ -46,6 +46,9 @@
   							  <label for="exampleInputPassword">密碼Password</label>
   							  <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name = "password">
   							 </div>
+  							 <div class="form-group">
+  							  <label for="exampleMessage"><font color="red">${message }</font></label>
+  							 </div>
   							<button type="submit" class="btn btn-default">登陸</button>
 						</form>
 					</div>	
