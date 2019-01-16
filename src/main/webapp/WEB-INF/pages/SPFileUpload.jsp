@@ -11,21 +11,24 @@
 	<script type="text/javascript" src="../resources/JS/GetFile.js"></script>
 </head>
 <body>
-	<form class="form-horizontal" action="" method="get" role="form">
-		<div class="form-box">
-				<h3><span class="span-left">一般規格書上傳</span></h3>
-		</div>
-		<div class="form-box">
-			<label for="SP-FileUp"  class="col-sm-1 control-label">檔案名稱:
-			</label>
-			<div class="file-main">
-				<input id="lefile" type="file" style="display:none">
-				<input id="SP-FileUp" class="form-control file-text" type="text">
-				<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
-			</div>	
-			<button type="submit" class="btn btn-primary file-only">上傳</button>	
-		</div>
-	</form>
-
+	<div class="top">
+		<form class="form-horizontal" action="" method="get" role="form">
+			<div class="form-box">
+					<h3><span class="span-left">一般規格書上傳</span></h3>
+			</div>
+			<div class="form-box">
+				<label for="SP-FileUp"  class="col-sm-1 control-label">檔案名稱:
+				</label>
+				<div class="file-main">
+					<input id="lefile" type="file" style="display:none">
+					<input id="SP-FileUp" class="form-control file-text" type="text">
+					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
+				</div>	
+				<button type="submit" class="btn btn-primary file-only">上傳</button>	
+			</div>
+		</form>
+	</div>
+	<div class="bottom">
+	</div>
 </body>
 </html>
