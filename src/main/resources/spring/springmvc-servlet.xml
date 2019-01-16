@@ -30,7 +30,7 @@
 	
 	<!-- 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/pages/" />
+		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp"></property>
 	</bean>
       
@@ -39,7 +39,7 @@
       		<mvc:mapping path="/**" />
       		<mvc:mapping path="/" />
       		<mvc:exclude-mapping path="/Login"/>
-      		<mvc:exclude-mapping path="/index"/> 
+      		<!-- <mvc:exclude-mapping path="/index"/>  -->
       		<mvc:exclude-mapping path="/resources/**"/>  
       		<bean class="com.foxlink.spc.util.CheckLoginUtil"/>
       	</mvc:interceptor>
