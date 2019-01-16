@@ -53,7 +53,10 @@
                             		<div class="error" style="color:#FF0000">${error}</div>
                            		 </c:if>
                            		 <c:if test="${not empty logout}">
-                            		<div class="logout">${logout}</div>
+                            		<div class="logout" style="color:#FF0000">${logout}</div>
+                           		 </c:if>
+                           		 <c:if test="${not empty kickout}">
+                            		<div class="kickout" style="color:#FF0000">${kickout}</div>
                            		 </c:if>			
   							 </div>
   							<button type="submit" class="btn btn-default btn-right">登陸</button>
