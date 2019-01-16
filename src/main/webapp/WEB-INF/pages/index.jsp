@@ -22,7 +22,10 @@
 <body class="easyui-layout">
 	<div region="north" border="false" class="north-s">
 		<h1></h1>
-		<a href="#" id="exitLog">退出登陸</a>
+		<div class="name-exit">
+			<span>${message}</span>
+			<a href="#" id="exitLog">退出登陸</a>
+		</div>
 	</div>
 	<div region="west" split="true" title="导航菜单" style="width:205px;">
 		<div class="easyui-accordion" fit="true" border="false">
