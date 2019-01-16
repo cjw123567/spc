@@ -37,12 +37,12 @@ public class Login {
 		Map<String, String> m = new HashMap<>();
 		if(error != null){
 			System.out.println(123);
-			m.put("message", "账号或密码错误");
+			m.put("error", "账号或密码错误");
 		}
 		
 		if(logout != null){
 			System.out.println(234);
-			m.put("message", "登出成功");
+			m.put("logout", "登出成功");
 		}
 		
 		ModelAndView mv = new ModelAndView("Login", m);
