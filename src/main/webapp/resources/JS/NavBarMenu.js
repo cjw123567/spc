@@ -2,7 +2,7 @@ var _menus ={
 	"menus":[{
 		"menuid":"1",
 		"controll":"",
-		"rel":"test/ShowLinkManage",
+		"rel":"LinkManage/ShowLinkManage",
 		"menuname":"綫別管理",
 		"icon":"glyphicon-plus",
 		"menus_s":[{
@@ -244,7 +244,7 @@ $(function() {
 	$('#exitLog').click(function() {
 		$.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
 			if (r) {
-				location.href = 'Login?logout';
+				location.href = 'logout';
 			}
 		});
 

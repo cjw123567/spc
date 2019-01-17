@@ -27,11 +27,19 @@
 		.north-s a:hover{
 			color:red;
 		}
-		#exitLog{
+		.name-exit{
 			float: right;
-    		font-size: 17px;
-    		font-weight: bold;
-   			position: relative;
+			position: relative;
     		top: 55px;
     		right: 50px;
+    		font-size: 17px;
+    		font-weight: bold;
+		}
+		#exitLog{
+			/* float: right; */
+    		/* font-size: 17px;
+    		font-weight: bold; */
+   			/* position: relative;
+    		top: 55px;
+    		right: 50px; */
 		}

@@ -10,18 +10,22 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-	<form class="form-horizontal" action="" method="get" role="form">
-		<div class="form-box">
-				<h3><span class="span-left">TOOL規格書搜尋</span></h3>
-		</div>
-		<div class="form-box">
-			<label for="project-bd"  class="col-sm-1 control-label">專案名稱_版次:
-			</label>
-			<div class="file-main">
-				<input id="project-bd" class="form-control" type="text">
-			</div>	
-			<button type="submit" class="btn btn-primary file-only">搜尋</button>	
-		</div>
-	</form>
+	<div class="top">
+		<form class="form-horizontal" action="" method="get" role="form">
+			<div class="form-box">
+					<h3><span class="span-left">TOOL規格書搜尋</span></h3>
+			</div>
+			<div class="form-box">
+				<label for="project-bd"  class="col-sm-1 control-label">專案名稱_版次:
+				</label>
+				<div class="file-main">
+					<input id="project-bd" class="form-control" type="text">
+				</div>	
+				<button type="submit" class="btn btn-primary file-only">搜尋</button>	
+			</div>
+		</form>
+	</div>
+	<div class="bottom">
+	</div>
 </body>
 </html>

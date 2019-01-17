@@ -22,7 +22,10 @@
 <body class="easyui-layout">
 	<div region="north" border="false" class="north-s">
 		<h1></h1>
-		<a href="#" id="exitLog">退出登陸</a>
+		<div class="name-exit">
+			<span>${message}</span>
+			<a href="#" id="exitLog">退出登陸</a>
+		</div>
 	</div>
 	<div region="west" split="true" title="导航菜单" style="width:205px;">
 		<div class="easyui-accordion" fit="true" border="false">
@@ -34,16 +37,16 @@
 	</div>
 	<div id="content" region="center">
 		<div class="easyui-layout" fit="true">
-			<div region="north"  style="overflow: hidden;height:30%;" split="true">
+		<!-- 	<div region="north"  style="overflow: hidden;height:30%;" split="true"> -->
 				 <div id="tabs" class="easyui-tabs" fit='true'  border="false"> 
 					
 				 </div>
 				<!--  <div id="iframeContent" style="overflow: hidden">
 						
 				</div> -->
-			</div>
-			<div region="center" style="overflow: hidden;height:70%;">
-			</div>
+			<!-- </div> -->
+		<!-- 	<div region="center" class="ceshi" style="overflow: hidden;height:70%;">
+			</div> -->
 		</div>
 	</div>
 	<%-- <jsp:include page="logout.jsp" /> --%>
