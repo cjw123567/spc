@@ -56,7 +56,7 @@ var _menus ={
 	},{
 		"menuid":"7",
 		"controll":"",
-		"rel":"test/ShowLinkManage",
+		"rel":"uploadSpec/uploadSpec.show",
 		"menuname":"規格書上傳",
 		"icon":"glyphicon-open",
 		"menus_s":[{
