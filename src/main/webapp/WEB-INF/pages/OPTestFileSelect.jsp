@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 </head>
 <body>
+	<div class="top">
 	<form class="form-horizontal" action="" method="get" role="form">
 		<div class="form-box">
 				<h3><span class="span-left">OPTest規格書搜尋</span></h3>
@@ -23,5 +24,8 @@
 			<button type="submit" class="btn btn-primary file-only">搜尋</button>	
 		</div>
 	</form>
+	</div>
+	<div class="bottom">
+	</div>
 </body>
 </html>
