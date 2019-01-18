@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/JS/GetFile.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 </head>
 <body>
 	<div class="top">
