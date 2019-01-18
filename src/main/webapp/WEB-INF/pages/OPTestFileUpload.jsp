@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="top">
-		<form class="form-horizontal" action="" method="get" role="form">
+		<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post">
 			<div class="form-box">
 					<h3><span class="span-left">OPTest規格書上傳</span></h3>
 			</div>
@@ -20,7 +20,7 @@
 				<label for="OPTest-FileUp"  class="col-sm-1 control-label">檔案名稱:
 				</label>
 				<div class="file-main">
-					<input id="lefile" type="file" style="display:none">
+					<input id="lefile" name="file" type="file" style="display:none">
 					<input id="OPTest-FileUp" class="form-control file-text" type="text">
 					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
 				</div>	
