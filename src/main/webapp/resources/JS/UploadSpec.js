@@ -31,7 +31,7 @@ $(document).ready(function(){
 		var strPartNumberAll = $("#upfile").val();
 		var str2V=strPartNumberAll.substr(0,strPartNumberAll.indexOf('.'));
 		$.ajax({ 
-			   url:"../uploadSpec/checkPartNumber.do", 
+			   url:"checkPartNumber.do", 
 			   type:'post',
 			   async : false,
 			   data:{"str2V":str2V},
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		formData.append('file',$('input[name=file]')[0].files[0]);*/
 		//var formData = new FormData($("#file")[0]);
 		  $.ajax({ 
-		   url:"../uploadSpec/ajaxUploadSpec.do", 
+		   url:"ajaxUploadSpec.do", 
 		   type:'POST', 
 		   data:formData,
 		   async : false,
