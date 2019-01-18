@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="top">
-		<form class="form-horizontal" action="" method="get" role="form">
+		<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post">
 			<div class="form-box">
 				<label for="fl-Factory"  class="col-sm-1 control-label">廠區:
 				</label>

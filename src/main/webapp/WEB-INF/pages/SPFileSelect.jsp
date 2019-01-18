@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="top">
-		<form class="form-horizontal" action="" method="get" role="form">
+		<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post">
 			<div class="form-box">
 					<h3><span class="span-left">一般巡檢規格書搜尋</span></h3>
 			</div>
@@ -19,7 +19,7 @@
 				<label for="partNo-bd"  class="col-sm-1 control-label">料號_版次:
 				</label>
 				<div class="file-main">
-					<input id="partNo-bd" class="form-control" type="text">
+					<input id="partNo-bd" name="partNo-bd" class="form-control" type="text">
 				</div>	
 				<button type="submit" class="btn btn-primary file-only">搜尋</button>	
 			</div>

@@ -27,7 +27,8 @@ public class UploadSpecController {
 	
 	@RequestMapping("/uploadSpec.show")
 	public String ShowUploadSpec() {
-		return "UploadSpec";
+		return "SPFileUpload";
+		/*return "UploadSpec";*/
 	}
 	@RequestMapping(value="/ajaxUploadSpec.do",method=RequestMethod.POST)
 	public @ResponseBody String ajaxUploadSpec(HttpSession session,MultipartFile file ) {

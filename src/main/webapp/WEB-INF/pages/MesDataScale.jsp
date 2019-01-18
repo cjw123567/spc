@@ -45,9 +45,17 @@
 				</div>
 			</div>
 			<div class="form-box">
+				<label for="mes-stage" class="col-sm-1 control-label">量測階段:
+				</label>
+				<div class="col-sm-2">
+					<select id="mes-stage" name="mes-stage" class="form-control">
+						<option>禁止选择</option>
+					</select>
+				</div>
 				<label for="dpick1"  class="col-sm-1 control-label">搜尋日期:
 				</label>
 				<div class="col-sm-2">
+					<!-- <input id="dpick1" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({dateFmt:'yyyy/MM/dd'})" autocomplete="off"> -->
 					<input id="dpick1" name="search-time" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({maxDate:'%y-%M-{%d}'})" autocomplete="off">
 				</div>
 				<button type="submit" class="btn btn-primary btn-main">查詢</button>
