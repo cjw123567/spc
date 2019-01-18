@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 
 </head>
 <body>
