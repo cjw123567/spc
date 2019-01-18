@@ -92,7 +92,7 @@ var _menus ={
 	},{
 		"menuid":"11",
 		"controll":"",
-		"rel":"",
+		"rel":"SelectSpec/ShowSelectSpec",
 		"menuname":"規格書搜尋",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
