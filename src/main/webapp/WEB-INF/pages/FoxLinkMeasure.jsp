@@ -9,10 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 </head>
 <body>
 	<div class="top">
-		<form class="form-horizontal" action="" method="get" role="form">
+		<form class="form-horizontal" id="form1" enctype="multipart/form-data" method="post">
 			<div class="form-box">
 				<label for="fl-Factory"  class="col-sm-1 control-label">廠區:
 				</label>

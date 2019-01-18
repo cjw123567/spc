@@ -54,7 +54,7 @@
 	</listener>
 	<!-- 指定加载Spring配置文件的位置 -->
 	<context-param>
-		<param-name>contextConfigLocation</param-name> 这个key不能改，背下来
+		<param-name>contextConfigLocation</param-name> <!-- 这个key不能改，背下来 -->
 		<param-value>
             classpath:spring/applicationContext.xml
       </param-value>
