@@ -27,7 +27,11 @@
 					<input id="CTP-FileUp" class="form-control file-text" type="text">
 					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
 				</div>	
+
 				<button type="submit" class="btn btn-primary file-only" id="Submit_CTPUpload">上傳</button>	
+
+				<button type="button" class="btn btn-primary file-only">上傳</button>	
+
 			</div>
 		</form>
 	</div>

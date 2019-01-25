@@ -74,8 +74,8 @@
 				<div class="col-sm-2">
 					<input type="text" name="cbk-Stage" id="cbk-Stage" class="form-control"/>
 				</div>
-				<button type="submit" class="btn btn-primary btn-main">提交</button>
-				<button type="submit" class="btn btn-primary btn-main">輸出</button>
+				<button type="button" class="btn btn-primary btn-main">提交</button>
+				<button type="button" class="btn btn-primary btn-main">輸出</button>
 			</div>
 			<!-- <button type="submit" class="btn btn-primary btn-left">提交</button>
 			<button type="submit" class="btn btn-primary btn-left">輸出</button> -->

@@ -89,7 +89,7 @@
 					<input type="text" id="emp-No" class="form-control"/>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary btn-left">提交</button>
+			<button type="button" class="btn btn-primary btn-left">提交</button>
 			<!-- <button type="button" class="btn btn-primary">点击</button> -->
 		</form>
 	</div>
