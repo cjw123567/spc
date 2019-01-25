@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 </head>
 <body>
 	<div class="top">
@@ -57,8 +58,8 @@
 				<div class="col-sm-2">
 					<input id="dpick1" name="search-time" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({maxDate:'%y-%M-{%d}'})" autocomplete="off">
 				</div>
-				<button type="submit" class="btn btn-primary btn-main">查詢</button>
-				<button type="submit" class="btn btn-primary btn-main">輸出</button>
+				<button type="button" class="btn btn-primary btn-main">查詢</button>
+				<button type="button" class="btn btn-primary btn-main">輸出</button>
 			</div>
 			<!-- <button type="submit" class="btn btn-primary btn-left">提交</button>
 			<button type="submit" class="btn btn-primary btn-left">輸出</button> -->

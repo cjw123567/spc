@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/JS/GetFile.js"></script>
 	<script type="text/javascript" src="../resources/JS/operate/SPFileUpload.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 </head>
 <body>
 	<div class="top">
@@ -25,7 +26,7 @@
 					<input id="SP-FileUp" class="form-control file-text" type="text" readonly>
 					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
 				</div>	
-				<button type="submit" class="btn btn-primary file-only" id="Submit_Upload">上傳</button>	
+				<button type="button" class="btn btn-primary file-only" id="Submit_Upload">上傳</button>	
 			</div>
 		</form>
 	</div>

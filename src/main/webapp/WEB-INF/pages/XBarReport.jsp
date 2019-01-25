@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 
 </head>
 <body>
@@ -61,8 +62,8 @@
 				<div class="col-sm-2">
 					<input id="dpick2" name="end" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({dateFmt:'yyyy/MM/dd',minDate:'#F{$dp.$D(\'dpick1\')}'})" autocomplete="off">
 				</div>
-				<button type="submit" class="btn btn-primary btn-main">提交</button>
-				<button type="submit" class="btn btn-primary btn-main">輸出</button>
+				<button type="button" class="btn btn-primary btn-main">提交</button>
+				<button type="button" class="btn btn-primary btn-main">輸出</button>
 			
 			</div>
 			
