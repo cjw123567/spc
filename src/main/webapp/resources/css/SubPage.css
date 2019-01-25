@@ -13,6 +13,17 @@
 html,body{
 	height:100%;
 }
+.top{
+	height:30%;
+	border-bottom: 5px solid #e6efff;
+    box-shadow: 0 1px #69b2e9
+}
+#form1{
+	height:100%;
+}
+.one-box{
+	height:80%;
+}
 .form-horizontal > div{
 	margin-top:10px;
 	display: block;
@@ -31,18 +42,11 @@ html,body{
 	top:0;
 	left:200px;
 } */
-.top{
-	height:30%;
-	border-bottom: 5px solid #e6efff;
-    box-shadow: 0 1px #69b2e9
-}
+
 .bottom{
 	height:70%;
 }
 .btn-left{
-	position:relative; 
-	top:170px;
-	right:200px;
 	width:150px;
 }
 .file-main{
@@ -63,4 +67,8 @@ html,body{
 .span-left{
 	position:relative;
 	left:40px;
+}
+.show-table{
+	width: 90%;
+	margin:25px 0px 0px 4%;
 }

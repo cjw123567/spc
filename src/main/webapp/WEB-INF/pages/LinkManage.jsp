@@ -27,7 +27,7 @@
 <script type="text/javascript"
 	src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
-<script type="text/javascript" src="../resources/JS/LinkManage.js"></script>
+<script type="text/javascript" src="../resources/JS/operate/LinkManage.js"></script>
 </head>
 <body>
 	<div class="top">
@@ -61,7 +61,7 @@
 		</form>
 	</div>
 	<div class="bottom" style = "overflow:auto">
-		<table class="table table-hover table-bordered" id="linkManageTable" style="width: 70%;margin:10px 0px 0px 1%;">
+		<table class="table table-hover table-bordered show-table" id="linkManageTable">
 		<thead>
 			<tr>
 				<th>廠區</th>

@@ -19,6 +19,7 @@
 
 	<script type="text/javascript" src="./resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="./resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./resources/JS/login.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -101,10 +102,6 @@
 			※如有問題 , 請聯繫 : XXXXXXXXXXXXXXXXXX
 		</div>
 	</div>
-	<script type="text/javascript">
-    if (window != top) {    
-        top.location.href = location.href;    
-    }   
-    </script>
+
 </body>
 </html>
