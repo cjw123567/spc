@@ -101,5 +101,10 @@
 			※如有問題 , 請聯繫 : XXXXXXXXXXXXXXXXXX
 		</div>
 	</div>
+	<script type="text/javascript">
+    if (window != top) {    
+        top.location.href = location.href;    
+    }   
+    </script>
 </body>
 </html>
