@@ -156,7 +156,7 @@ public class UploadAllDao {
 			// throw new RuntimeException(ex.getMessage()); //抛出RuntimeException异常
 
 		}
-		return "插入了" + iresurt + "行数据 ," + strResurt;
+		return "规格书已上传，插入了" + iresurt + "行数据 ," + strResurt;
 	}
 	
 	
