@@ -22,7 +22,7 @@
 			<div class="file-main">
 				<input id="project-bd" name="project-bd" class="form-control" type="text">
 			</div>	
-			<button type="submit" class="btn btn-primary file-only">搜尋</button>	
+			<button type="button" class="btn btn-primary file-only">搜尋</button>	
 		</div>
 	</form>
 	</div>
