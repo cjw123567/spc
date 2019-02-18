@@ -101,3 +101,8 @@
     		right: 105px;	
 			width:180px;
 		}
+		.ckbox{
+			position: relative;
+    		top: -5px;
+    		left:-160px;
+		}
