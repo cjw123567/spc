@@ -18,8 +18,24 @@
 	<link rel="stylesheet" type="text/css" href="./resources/css/loginmain.css"> 
 
 	<script type="text/javascript" src="./resources/jq/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="./resources/jq/jquery.cookie.js"></script>
 	<script type="text/javascript" src="./resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./resources/JS/login.js"></script>
+	<!-- <script type="text/javascript">
+		$(function(){
+			var COOKIE_NAME = 'username';
+			if($.cookie(COOKIE_NAME)){
+				$(".username").val($.cookie(COOKIE_NAME));
+			}
+			$("#check").click(function(){
+					if(this.checked){
+						$.cookie(COOKIE_NAME,$('.username').val(),{path:'/',expires:10});
+					}else{
+						$.cookie(COOKIE_NAME,null,{path:'/'});
+					}
+			})
+		})
+	</script> -->
 </head>
 <body>
 	<div class="container">
@@ -43,12 +59,15 @@
   				  		<form method="post" action="login">
   							<div class="form-group">
   							  <label for="exampleInputAccount">賬號Account</label>
-  							  <input type="text" class="form-control" id="exampleInputAccount" placeholder="Account" name="username">
+  							  <input type="text" class="form-control username" id="exampleInputAccount" placeholder="Account" name="username">
   							</div>
   							<div class="form-group">
   							  <label for="exampleInputPassword">密碼Password</label>
-  							  <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name = "password">
+  							  <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name = "password">			  
   							 </div>
+							 <div class="ckbox">
+							 	<input type="checkbox" name="check" id="check"/><span>記住賬號</span>
+							 </div>
   							 <div class="tips">
   							 	<c:if test="${not empty error}">
                             		<div class="error" style="color:#FF0000">${error}</div>
