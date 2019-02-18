@@ -22,6 +22,8 @@ public class UploadCTPService {
 		String strResult = null;
 		String strPartNumber = strPartNumber2V.substring(0, strPartNumber2V.indexOf("_"));
 		String strSQL = "SELECT COUNT(*) from spc.spec_ctp where Part_Number_V LIKE '" + strPartNumber + "%'";
+		
+		//String strSQL = "SELECT COUNT(*) from spc.spec where Part_Number_V LIKE '" + "?" + "%'";
 		try {
 			Integer iCount = uploadCTPDao.selectPartNumber(strSQL);
 			if (iCount > 0) {
