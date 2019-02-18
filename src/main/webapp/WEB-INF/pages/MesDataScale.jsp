@@ -59,7 +59,7 @@
 					<!-- <input id="dpick1" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({dateFmt:'yyyy/MM/dd'})" autocomplete="off"> -->
 					<input id="dpick1" name="search-time" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({maxDate:'%y-%M-{%d}'})" autocomplete="off">
 				</div>
-				<button type="button" class="btn btn-primary btn-main">查詢</button>
+				<button type="button" class="btn btn-primary btn-main" id="search">查詢</button>
 				
 			</div>
 			<!-- <button type="submit" class="btn btn-primary btn-left">提交</button>

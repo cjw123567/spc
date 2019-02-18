@@ -26,7 +26,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="bottom">
+	<div class="bottom" style = "overflow:auto">
 	</div>
 </body>
 </html>
