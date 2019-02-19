@@ -11,9 +11,11 @@ $(document).ready(function(){
             	if(vaRetrun=='Y'){
             		if(confirm("此料號規格已經存在!!是否要複寫？")) {
             			upfileAjax();
+            			showSpec();
             	    };
             	}else if(vaRetrun=='N'){
             		upfileAjax();
+            		showSpec();
             	}else{
             		alert("NG:上传档案异常！")
             	}
@@ -68,5 +70,49 @@ $(document).ready(function(){
 		   } 
 		  
 		  }) 
+	}
+	
+	function showSpec(){
+		var strPartNumberAll = $("#SP-FileUp").val();
+		var str2V=strPartNumberAll.substr(0,strPartNumberAll.indexOf('.'));
+		$.ajax({
+			url:"../uploadSpec/ShowSpec",
+			type:"POST",
+			async : false,
+			data:{"str2V":str2V},
+			success:function(result){ 
+				var StatusCode = result.StatusCode;
+				var message = result.message;
+				if(StatusCode == "500"){
+					alert(message);
+				}else if(StatusCode == "200"){
+					ShowSpecList(message);
+				}
+			}, 
+			error:function(err){ 
+				 alert("NG:"+err); 
+			} 
+		})
+	}
+	function ShowSpecList(result){
+		/*var obj = $.parseJSON(result)*/
+		var obj = JSON.parse(result)
+		$(".bottom").html('');
+		/*console.log(obj[0].WorkShop);*/
+		var ShowTable = '';
+		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable'><thead><tr><th>工站號</th><th>檢驗項目</th><th>尺寸</th><th>上限</th><th>下限</th><th>頻率</th><th>檢驗階段</th><th>備注</th></tr></thead><tbody>";
+		for(var i=0;i<obj.length;i++){
+			ShowTable+='<tr><td>'+obj[i].WorkShop+'</td>'
+					  +'<td>'+obj[i].Inspection_Item+'</td>'
+					  +'<td>'+obj[i].Nominal_Dim+'</td>'
+					  +'<td>'+obj[i].Upper_Dim+'</td>'
+					  +'<td>'+obj[i].Lower_Dim+'</td>'
+					  +'<td>'+obj[i].Frequency+'</td>'
+					  +'<td>'+obj[i].Status+'</td>'
+			var Remarks = obj[i].Remark1!=null?obj[i].Remark1:' ';
+			ShowTable+='<td>'+Remarks+'</td></tr>'
+		}
+		ShowTable+="</tbody></table>";
+		$(".bottom").append(ShowTable);
 	}
 })
