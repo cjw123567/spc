@@ -2,8 +2,6 @@ package com.foxlink.spc.pojo;
 
 public class uploadSPCCTP {
 
-	//id號
-	private String id;
 	//專案名稱
 	private String PROJECT_NAME;
 	//工站號碼
@@ -12,12 +10,18 @@ public class uploadSPCCTP {
 	private String WORKSHOP_NAME;
 	//設備名稱
 	private String MACHINE_NAME;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	//檢驗項目
+	private String INSPECTION_ITEM;
+	//上限
+	private int UPPER_DIM;
+	//下限
+	private int LOWER_DIM;
+	//檢驗型態
+	private String INSPECTION_TYPE;
+	//機台型號
+	private String  MACHINE_TYPE;
+	//備註
+	private String REMARK;
 	public String getPROJECT_NAME() {
 		return PROJECT_NAME;
 	}
@@ -42,5 +46,43 @@ public class uploadSPCCTP {
 	public void setMACHINE_NAME(String mACHINE_NAME) {
 		MACHINE_NAME = mACHINE_NAME;
 	}
+	public String getINSPECTION_ITEM() {
+		return INSPECTION_ITEM;
+	}
+	public void setINSPECTION_ITEM(String iNSPECTION_ITEM) {
+		INSPECTION_ITEM = iNSPECTION_ITEM;
+	}
+	public int getUPPER_DIM() {
+		return UPPER_DIM;
+	}
+	public void setUPPER_DIM(int uPPER_DIM) {
+		UPPER_DIM = uPPER_DIM;
+	}
+	public int getLOWER_DIM() {
+		return LOWER_DIM;
+	}
+	public void setLOWER_DIM(int lOWER_DIM) {
+		LOWER_DIM = lOWER_DIM;
+	}
+	public String getINSPECTION_TYPE() {
+		return INSPECTION_TYPE;
+	}
+	public void setINSPECTION_TYPE(String iNSPECTION_TYPE) {
+		INSPECTION_TYPE = iNSPECTION_TYPE;
+	}
+	public String getMACHINE_TYPE() {
+		return MACHINE_TYPE;
+	}
+	public void setMACHINE_TYPE(String mACHINE_TYPE) {
+		MACHINE_TYPE = mACHINE_TYPE;
+	}
+	public String getREMARK() {
+		return REMARK;
+	}
+	public void setREMARK(String rEMARK) {
+		REMARK = rEMARK;
+	}
+	
+	
 	
 }
