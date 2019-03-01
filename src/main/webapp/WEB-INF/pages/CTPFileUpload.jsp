@@ -24,7 +24,7 @@
 				</label>
 				<div class="file-main">
 					<input id="lefile" name="file" type="file" style="display:none" accept=".xls,.xlsx">
-					<input id="CTP-FileUp" class="form-control file-text" type="text">
+					<input id="CTP-FileUp" class="form-control file-text" type="text" readonly>
 					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
 				</div>	
 

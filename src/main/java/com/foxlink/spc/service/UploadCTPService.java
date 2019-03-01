@@ -104,7 +104,7 @@ public class UploadCTPService {
 			totalRecord = 0;
 			strResurt += "NG:" + e.toString();
 		}
-		System.out.println("插入的數據"+x);
+		//System.out.println("插入的數據"+x);
 		return "规格书已上传，插入了" + x + "行数据 ," + strResurt;
 	}
 	

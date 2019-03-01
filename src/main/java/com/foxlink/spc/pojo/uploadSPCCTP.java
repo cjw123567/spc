@@ -22,8 +22,16 @@ public class uploadSPCCTP {
 	private String  MACHINE_TYPE;
 	//備註
 	private String REMARK;
+	//上傳時間
+	private String DATE_TIME;
 	public String getPROJECT_NAME() {
 		return PROJECT_NAME;
+	}
+	public String getDATE_TIME() {
+		return DATE_TIME;
+	}
+	public void setDATE_TIME(String dATE_TIME) {
+		DATE_TIME = dATE_TIME;
 	}
 	public void setPROJECT_NAME(String pROJECT_NAME) {
 		PROJECT_NAME = pROJECT_NAME;
