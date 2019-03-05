@@ -112,9 +112,9 @@ public class UploadAllDao {
 					arg0.setString(4, row.getCell(1).getStringCellValue());
 					arg0.setString(5, row.getCell(2).getStringCellValue());
 					arg0.setString(6, row.getCell(3).getStringCellValue());
-					arg0.setString(7, row.getCell(4).toString().equals("NA") ? "0.00" : row.getCell(4).toString());
-					arg0.setString(8, row.getCell(5).toString().equals("NA") ? "0.00" : row.getCell(5).toString());
-					arg0.setString(9, row.getCell(6).toString().equals("NA") ? "0.00" : row.getCell(6).toString());
+					arg0.setString(7, row.getCell(4).toString().equals("NA")||row.getCell(4).toString().equals("") ? "0.00" : row.getCell(4).toString());
+					arg0.setString(8, row.getCell(5).toString().equals("NA")||row.getCell(5).toString().equals("") ? "0.00" : row.getCell(5).toString());
+					arg0.setString(9, row.getCell(6).toString().equals("NA")||row.getCell(6).toString().equals("") ? "0.00" : row.getCell(6).toString());
 					arg0.setString(10, row.getCell(7).getStringCellValue());
 					arg0.setString(11, row.getCell(8).getStringCellValue());
 					arg0.setString(12, row.getCell(9).getStringCellValue());

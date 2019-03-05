@@ -78,7 +78,7 @@ $(document).ready(function(){
 		$.ajax({
 			url:"../uploadSpec/ShowSpec",
 			type:"POST",
-			async : false,
+			async : true,
 			data:{"str2V":str2V},
 			success:function(result){ 
 				var StatusCode = result.StatusCode;

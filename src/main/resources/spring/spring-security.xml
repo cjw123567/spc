@@ -14,7 +14,7 @@
 		<headers><frame-options disabled="true"/></headers>
 
 		<!--会话管理 -->
-		<session-management invalid-session-url="/Login">
+		<session-management>
 			<!-- 設置后登陆的将先登录的踢出系统 -->
 			<concurrency-control max-sessions="1"
 				error-if-maximum-exceeded="false" expired-url="/Login?kickout"/>
