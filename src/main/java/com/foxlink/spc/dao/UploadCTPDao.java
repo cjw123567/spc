@@ -57,7 +57,7 @@ public class UploadCTPDao {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			logger.error("UploadTOOLDao_CheckProName_Error", e);
+			logger.error("UploadCTPDao_CheckProName_Error", e);
 		}
 		return strResult;
 	}
@@ -136,8 +136,8 @@ public class UploadCTPDao {
 					arg0.setString(4, row.getCell(2).getStringCellValue());
 					arg0.setString(5, row.getCell(3).getStringCellValue());
 					arg0.setString(6, row.getCell(4).getStringCellValue());
-					arg0.setString(7, row.getCell(5).toString().equals("NA") ? "0.00" : row.getCell(5).toString());
-					arg0.setString(8, row.getCell(6).toString().equals("NA") ? "0.00" : row.getCell(6).toString());
+					arg0.setString(7, row.getCell(5).toString().equals("NA")|| row.getCell(5).toString().equals("") ? "0.00" : row.getCell(5).toString());
+					arg0.setString(8, row.getCell(6).toString().equals("NA")||row.getCell(6).toString().equals("") ? "0.00" : row.getCell(6).toString());
 					arg0.setString(9, row.getCell(7).getStringCellValue());
 					arg0.setString(10, row.getCell(8).getStringCellValue());
 					arg0.setString(11, row.getCell(9).getStringCellValue());
@@ -171,39 +171,7 @@ public class UploadCTPDao {
 		return totalRecord;
 	}
 	
-//	public int uploadOK(int x,String fileName2,String strUserName,Row row ) {
-//		int totalRecord = 0;
-//		String strSQLInsert = "INSERT INTO spc.spec(id,Part_Number_V,Project_Name,Workshop,Inspection_Item,Inspection_Content,Nominal_Dim,Upper_Dim,Lower_Dim,Frequency,Status,Inspection_Method,Remark1,SPC_Num,Dim_Location,Date_Time,Personnel_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?) ";
-//		try {
-//			totalRecord = jdbcTemplate.update(strSQLInsert,new PreparedStatementSetter() {
-//				
-//				@Override
-//				public void setValues(PreparedStatement arg0) throws SQLException {
-//					// TODO Auto-generated method stub
-//					arg0.setInt(1, x);
-//					arg0.setString(2, fileName2);
-//					arg0.setString(3, row.getCell(0).getStringCellValue());
-//					arg0.setString(4, row.getCell(1).getStringCellValue());
-//					arg0.setString(5, row.getCell(2).getStringCellValue());
-//					arg0.setString(6, row.getCell(3).getStringCellValue());
-//					arg0.setString(7, row.getCell(4).toString().equals("NA") ? "0.00" : row.getCell(4).toString());
-//					arg0.setString(8, row.getCell(5).toString().equals("NA") ? "0.00" : row.getCell(5).toString());
-//					arg0.setString(9, row.getCell(6).toString().equals("NA") ? "0.00" : row.getCell(6).toString());
-//					arg0.setString(10, row.getCell(7).getStringCellValue());
-//					arg0.setString(11, row.getCell(8).getStringCellValue());
-//					arg0.setString(12, row.getCell(9).getStringCellValue());
-//					arg0.setString(13, row.getCell(10).getStringCellValue());
-//					arg0.setString(14, row.getCell(11).getStringCellValue());
-//					arg0.setString(15, row.getCell(12).getStringCellValue());
-//					arg0.setString(16, strUserName);
-//				}
-//			});
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			logger.error("Insert PartNumber error", e);
-//		}
-//		return totalRecord;
-//	}
+
 	public List<uploadSPCCTP> ShowCTPSpec(String strProNumber2V) {
 		// TODO Auto-generated method stub
 		String strProNumber3V =  strProNumber2V.substring(0, strProNumber2V.indexOf("_"));
@@ -229,4 +197,7 @@ public class UploadCTPDao {
 		}
 		return SpecList;
 	}
+	
+	
+	
 }

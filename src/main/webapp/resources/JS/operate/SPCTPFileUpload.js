@@ -75,6 +75,7 @@ $(document).ready(function(){
 		  }) 
 	}
 	
+	
 	function showCTPSpec(){
 		var strProNumberAll = $("#CTP-FileUp").val();
 		var str2V=strProNumberAll.substr(0,strProNumberAll.indexOf('.'));
@@ -93,7 +94,7 @@ $(document).ready(function(){
 				}
 			}, 
 			error:function(err){ 
-				 alert("NG:"+err); 
+				 alert("NG:"+err+"顯示錯誤"); 
 			} 
 		})
 	}
@@ -118,7 +119,7 @@ $(document).ready(function(){
 					  +'<td>'+obj[i].REMARK+'</td></tr>'
 					  
 		}
-		
+		ShowTable+="</tbody></table>";
 		$(".bottom").append(ShowTable);
 		
 	}
