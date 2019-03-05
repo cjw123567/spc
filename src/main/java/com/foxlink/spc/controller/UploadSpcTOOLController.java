@@ -27,7 +27,7 @@ public class UploadSpcTOOLController {
 	private UploadTOOLService uploadTOOLService;
 	
 	@RequestMapping(value="/ShowUploadSpcTOOL",method=RequestMethod.GET)
-	public String ShowAllAccountPage(){
+	public String ShowToolUpload(){
 		return "TOOLFileUpload";
 	}
 	

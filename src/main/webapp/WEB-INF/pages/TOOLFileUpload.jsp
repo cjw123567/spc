@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/JS/GetFile.js"></script>
 	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
-	<script type="text/javascript" src="../resources/JS//operate/ToolFileUpload.js"></script>
+	<script type="text/javascript" src="../resources/JS/operate/ToolFileUpload.js"></script>
 </head>
 <body>
 	<div class="top">
@@ -23,14 +23,14 @@
 				</label>
 				<div class="file-main">
 					<input id="lefile" name="file" type="file" style="display:none">
-					<input id="TOOL-FileUp" class="form-control file-text" type="text">
+					<input id="TOOL-FileUp" class="form-control file-text" type="text" readonly>
 					<a class="btn btn-primary" onclick="$('input[id=lefile]').click();">選擇文件</a>
 				</div>	
 				<button type="button" class="btn btn-primary file-only" id="Submit_Upload">上傳</button>	
 			</div>
 		</form>
 	</div>
-	<div class="bottom">
+	<div class="bottom" style="overflow:auto">
 	</div>
 </body>
 </html>

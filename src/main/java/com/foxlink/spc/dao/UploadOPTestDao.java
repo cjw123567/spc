@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
+import org.omg.CORBA.StringHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,52 +15,56 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.foxlink.spc.pojo.SPECTool;
+import com.foxlink.spc.pojo.SPECOPTest;
 
-@Repository("UploadTOOLDao")
-public class UploadTOOLDao {
+@Repository("UploadOPTestDao")
+public class UploadOPTestDao {
+	private static Logger logger = Logger.getLogger(UploadOPTestDao.class);
 	private JdbcTemplate jdbcTemplate;
-	private static Logger logger = Logger.getLogger(UploadTOOLDao.class);
 	
 	@Autowired
-	public UploadTOOLDao(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public UploadOPTestDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate=jdbcTemplate;
 	}
 	
-	public String  CheckProName(String strProName) {
-		String strResult = null ;
-		String strSQL = "SELECT count(*) from spc.spec_tool where PROJECT_NAME=?";
+	public String CheckProName(String strProName) {
+		// TODO Auto-generated method stub
+		
+		String strResult = null;
+		String strSQL = "select count(*) from SPC.SPEC_OPTEST where PROJECT_NAME LIKE '"+strProName+"%'";
 		try {
-			Integer iCount = jdbcTemplate.queryForObject(strSQL, new Object[] {strProName},Integer.class);
+			Integer iCount = jdbcTemplate.queryForObject(strSQL, Integer.class);
 			if (iCount>0) {
-				strResult = "Y";
+				strResult="Y";
 			} else {
-				strResult = "N";
+				strResult="N";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			logger.error("UploadTOOLDao_CheckProName_Error", e);
+			logger.error("UploadOPTestDao_CheckProName_Error", e);
 		}
 		return strResult;
 	}
-	
+
 	public int SelectProName(String fileName2) {
+		// TODO Auto-generated method stub
 		int totalRecord = -1;
-		String strSelectSql = "SELECT COUNT(*) from SPC.SPEC_TOOL where PROJECT_NAME = ?";
+		String strSQL = "select count(*) from SPC.SPEC_OPTEST where PROJECT_NAME = ?";
 		try {
-			totalRecord=jdbcTemplate.queryForObject(strSelectSql, new Object[] { fileName2 },Integer.class);
+			totalRecord = jdbcTemplate.queryForObject(strSQL, new Object[] { fileName2 },Integer.class);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("Find ProName error", e);
 		}
 		return totalRecord;
 	}
-	
+
 	public int DeleteProName(String fileName2) {
+		// TODO Auto-generated method stub
 		int totalRecord = -1;
-		String strDeleteSql = "delete FROM  SPC.SPEC_TOOL WHERE PROJECT_NAME = ? ";
+		String strSQL = "delete from SPC.SPEC_OPTEST where PROJECT_NAME=?";
 		try {
-			totalRecord=jdbcTemplate.update(strDeleteSql,new PreparedStatementSetter() {
+			totalRecord = jdbcTemplate.update(strSQL,new PreparedStatementSetter() {
 				
 				@Override
 				public void setValues(PreparedStatement arg0) throws SQLException {
@@ -73,18 +78,19 @@ public class UploadTOOLDao {
 		}
 		return totalRecord;
 	}
-		
-	public int uploadOK(String fileName2,String strUserName,Row row ) {
-		int totalRecord = 0;
-		String strSQLInsert = "INSERT INTO SPC.SPEC_TOOL(PROJECT_NAME,INSPECTION_ITEM,INSPECTION_TYPE,DEVICE_NUM,INSPECTION_CONTENT,FREQUENCY,DATETIME,PERSONNEL_ID) VALUES(?,?,?,?,?,?,sysdate,?) ";
+
+	public int uploadOK(String fileName2, String strUserName, Row row) {
+		// TODO Auto-generated method stub
+		int totalRecord = -1;
+		String strSQL = "INSERT INTO SPC.SPEC_OPTEST(TEST_ITEM,PROJECT_NAME,TEST_CLASS,TEST_STATUS,WORK_STATION,TEST_CONTENT,DATETIME,PERSONNEL_ID)VALUES(?,?,?,?,?,?,sysdate,?)" ;
 		try {
-			totalRecord = jdbcTemplate.update(strSQLInsert,new PreparedStatementSetter() {
+			totalRecord = jdbcTemplate.update(strSQL,new PreparedStatementSetter() {
 				
 				@Override
 				public void setValues(PreparedStatement arg0) throws SQLException {
 					// TODO Auto-generated method stub
-					arg0.setString(1, fileName2);
-					arg0.setString(2, row.getCell(0).getStringCellValue());
+					arg0.setString(1, row.getCell(0).getStringCellValue());
+					arg0.setString(2, fileName2);
 					arg0.setString(3, row.getCell(1).getStringCellValue());
 					arg0.setString(4, row.getCell(2).getStringCellValue());
 					arg0.setString(5, row.getCell(3).getStringCellValue());
@@ -99,25 +105,25 @@ public class UploadTOOLDao {
 		return totalRecord;
 	}
 
-	public List<SPECTool> ShowToolSpec(String strProNumber2V) {
+	public List<SPECOPTest> ShowOPTestSpc(String str2v) {
 		// TODO Auto-generated method stub
-		String Ssql = "SELECT INSPECTION_ITEM,INSPECTION_TYPE,DEVICE_NUM,INSPECTION_CONTENT,FREQUENCY From SPC.SPEC_TOOL where PROJECT_NAME=? order by INSPECTION_ITEM";
-		List<SPECTool> SpecList = new ArrayList<>();
+		List<SPECOPTest>SpecList = new ArrayList<>();
+		String strSQL= "select * from SPC.SPEC_OPTEST where PROJECT_NAME=?";
 		try {
-			RowMapper<SPECTool> mapper = new BeanPropertyRowMapper<>(SPECTool.class); 
-			SpecList = jdbcTemplate.query(Ssql, new PreparedStatementSetter() {
+			RowMapper<SPECOPTest>mapper = new BeanPropertyRowMapper<>(SPECOPTest.class);
+			SpecList = jdbcTemplate.query(strSQL, new PreparedStatementSetter() {
 				
 				@Override
 				public void setValues(PreparedStatement arg0) throws SQLException {
 					// TODO Auto-generated method stub
-					arg0.setString(1, strProNumber2V);
+					arg0.setString(1, str2v);
 				}
 			}, mapper);
 		} catch (Exception e) {
+			logger.error("SpecList查找所有OPTest規格書時發生錯誤："+e);
 			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("SpecList查找所有Tool規格書時發生錯誤："+e);
 		}
 		return SpecList;
 	}
+
 }
