@@ -24,6 +24,14 @@ public class uploadSPCCTP {
 	private String REMARK;
 	//上傳時間
 	private String DATE_TIME;
+	//上傳者
+	private String PERSONNEL_ID;
+	public String getPERSONNEL_ID() {
+		return PERSONNEL_ID;
+	}
+	public void setPERSONNEL_ID(String pERSONNEL_ID) {
+		PERSONNEL_ID = pERSONNEL_ID;
+	}
 	public String getPROJECT_NAME() {
 		return PROJECT_NAME;
 	}

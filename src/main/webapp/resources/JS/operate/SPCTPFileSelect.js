@@ -4,9 +4,16 @@ $(function(){
 	//showCTPSpec();
 	showDefaultPro_Name(); 
 	$('#CTP_Select').click(function(){
-		//alert("点击搜寻");
-		showCTPSpec();
-		//默認顯示數據庫中存在的專案名稱
+		alert("点击搜寻");
+		
+		var ProName1 = $("#project-bd").val();
+		if(ProName1!=""){
+			showCTPSpec();
+			//默認顯示數據庫中存在的專案名稱
+		}else{
+			alert("NG:專案名稱不能爲空！");
+		}
+		
 		
 	});
 	
@@ -60,7 +67,7 @@ $(function(){
 		$(".bottom").html('');
 		/*console.log(obj[0].WorkShop);*/
 		var ShowTable = '';
-		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable'><thead><tr><th>專案名稱</th><th>工站號碼</th><th>工站名稱</th><th>設備名稱</th><th>檢驗項目</th><th>上限</th><th>下限</th><th>檢測型態</th><th>機台型號</th><th>備註</th><th>上傳時間</th></tr></thead><tbody>";
+		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable'><thead><tr><th>專案名稱</th><th>工站號碼</th><th>工站名稱</th><th>設備名稱</th><th>檢驗項目</th><th>上限</th><th>下限</th><th>檢測型態</th><th>機台型號</th><th>備註</th><th>上傳者</th><th>上傳時間</th></tr></thead><tbody>";
 		for(var i=0;i<obj.length;i++){
 			//ID,PROJECT_NAME,WORKSHOP,WORKSHOP_NAME,MACHINE_NAME,INSPECTION_ITEM,UPPER_DIM,LOWER_DIM,INSPECTION_TYPE,MACHINE_TYPE,REMARK,PERSONNEL_ID,DATE_TIME
 			ShowTable+='<tr><td>'+obj[i].PROJECT_NAME+'</td>'
@@ -73,6 +80,7 @@ $(function(){
 					  +'<td>'+obj[i].INSPECTION_TYPE+'</td>'
 					  +'<td>'+obj[i].MACHINE_TYPE+'</td>'
 					  +'<td>'+obj[i].REMARK+'</td>'
+					  +'<td>'+obj[i].PERSONNEL_ID+'</td>'
 					  +'<td>'+obj[i].DATE_TIME+'</td></tr>'
 					  //+'<td>'+obj[i].REMARK+'</td></tr>'
 					  
@@ -88,7 +96,7 @@ $(function(){
 		$(".bottom").html('');
 		/*console.log(obj[0].WorkShop);*/
 		var ShowTable = '';
-		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable' ><thead><tr><th  style='text-align: center; color: red;' colspan='5'>專案名稱</th></tr></thead><tbody><tr>";
+		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable' ><thead><tr><th  style='text-align: center; color: black;background-color:#dddddd;' colspan='5'>專案名稱</th></tr></thead><tbody style='text-align: center;'><tr>";
 		for(var i=0;i<obj.length;i++){
 			//ID,PROJECT_NAME,WORKSHOP,WORKSHOP_NAME,MACHINE_NAME,INSPECTION_ITEM,UPPER_DIM,LOWER_DIM,INSPECTION_TYPE,MACHINE_TYPE,REMARK,PERSONNEL_ID,DATE_TIME
 			ShowTable+='<td>'+obj[i].PROJECT_NAME+'</td>'
