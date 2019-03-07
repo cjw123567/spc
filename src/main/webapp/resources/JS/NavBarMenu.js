@@ -128,7 +128,7 @@ var _menus ={
 	},{
 		"menuid":"15",
 		"controll":"",
-		"rel":"",
+		"rel":"/MeasureData/ShowMeasureData",
 		"menuname":"量測數據搜尋",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
