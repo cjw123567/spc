@@ -77,7 +77,7 @@ public class SelectCTPDao {
 		public List<uploadSPCCTP> ShowCTPSpec(String strProNumber2V) {
 			// TODO Auto-generated method stub
 			//String strProNumber3V =  strProNumber2V.substring(0, strProNumber2V.indexOf("_"));
-			String Ssql = "SELECT PROJECT_NAME,WORKSHOP,WORKSHOP_NAME,MACHINE_NAME,INSPECTION_ITEM,UPPER_DIM,LOWER_DIM,INSPECTION_TYPE,MACHINE_TYPE,REMARK,DATE_TIME From SPC.SPEC_CTP where PROJECT_NAME = '"+strProNumber2V +"' order by WORKSHOP";// '"+fileName3 +"%'
+			String Ssql = "SELECT PROJECT_NAME,WORKSHOP,WORKSHOP_NAME,MACHINE_NAME,INSPECTION_ITEM,UPPER_DIM,LOWER_DIM,INSPECTION_TYPE,MACHINE_TYPE,REMARK,PERSONNEL_ID,DATE_TIME From SPC.SPEC_CTP where PROJECT_NAME = '"+strProNumber2V +"' order by WORKSHOP";// '"+fileName3 +"%'
 			List<uploadSPCCTP> SpecList = new ArrayList<>();
 			System.out.println(Ssql);
 			System.out.println("專案號"+strProNumber2V);

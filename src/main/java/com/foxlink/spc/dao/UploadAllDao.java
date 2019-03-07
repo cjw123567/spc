@@ -132,7 +132,7 @@ public class UploadAllDao {
 	}
 	
 	public List<SPEC> ShowSpec(String strPartNumber2V){
-		String Ssql = "SELECT WORKSHOP,INSPECTION_ITEM,NOMINAL_DIM,UPPER_DIM,LOWER_DIM,FREQUENCY,STATUS,REMARK1 From SPC.SPEC where Part_Number_V=? order by WORKSHOP";
+		String Ssql = "SELECT PROJECT_NAME, WORKSHOP,INSPECTION_ITEM,INSPECTION_CONTENT,NOMINAL_DIM,UPPER_DIM,LOWER_DIM,FREQUENCY,STATUS,INSPECTION_METHOD,REMARK1,SPC_NUM,DIM_LOCATION From SPC.SPEC where Part_Number_V=? order by WORKSHOP";
 		List<SPEC> SpecList = new ArrayList<>();
 		try {
 			RowMapper<SPEC> mapper = new BeanPropertyRowMapper<>(SPEC.class); 

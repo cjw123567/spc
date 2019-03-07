@@ -94,23 +94,47 @@ $(document).ready(function(){
 			} 
 		})
 	}
+//	private String PROJECT_NAME;//專案名稱
+//	private String WorkShop;//工站名稱
+//	private String Inspection_Item;//檢驗項目
+//	private String INSPECTION_CONTENT;//檢驗內容
+//	private String INSPECTION_METHOD;//檢驗方法
+//	private int Nominal_Dim;//尺寸
+//	private int Upper_Dim;//上限
+//	private int Lower_Dim;//下限
+//	private String Frequency;//頻率
+//	private String Status;//檢驗階段
+//	private String Remark1;//備註
+//	private String SPC_NUM;//spc尺寸
+//	private String DIM_LOCATION;//尺寸位置
+//	private String DATE_TIME;//上傳時間
+//	private String PERSONNEL_ID;//上傳者
 	function ShowSpecList(result){
 		/*var obj = $.parseJSON(result)*/
 		var obj = JSON.parse(result)
 		$(".bottom").html('');
 		/*console.log(obj[0].WorkShop);*/
 		var ShowTable = '';
-		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable'><thead><tr><th>工站號</th><th>檢驗項目</th><th>尺寸</th><th>上限</th><th>下限</th><th>頻率</th><th>檢驗階段</th><th>備注</th></tr></thead><tbody>";
+		ShowTable += "<table class='table table-hover table-bordered show-table' id='linkManageTable'><thead><tr><th>專案名稱</th><th>FAI/工站號</th><th>檢驗項目</th><th>檢驗內容</th><th>尺寸</th><th>上限</th><th>下限</th><th>頻率</th><th>檢驗階段</th><th>檢驗方式</th><th>備注</th><th>SPC尺寸號</th><th>SPC尺寸位子</th></tr></thead><tbody>";
 		for(var i=0;i<obj.length;i++){
-			ShowTable+='<tr><td>'+obj[i].WorkShop+'</td>'
+			ShowTable+='<tr><td>'+obj[i].PROJECT_NAME+'</td>'
+				      +'<td>'+obj[i].WorkShop+'</td>'
 					  +'<td>'+obj[i].Inspection_Item+'</td>'
+					  +'<td>'+obj[i].INSPECTION_CONTENT+'</td>'
 					  +'<td>'+obj[i].Nominal_Dim+'</td>'
 					  +'<td>'+obj[i].Upper_Dim+'</td>'
 					  +'<td>'+obj[i].Lower_Dim+'</td>'
 					  +'<td>'+obj[i].Frequency+'</td>'
 					  +'<td>'+obj[i].Status+'</td>'
+					  +'<td>'+obj[i].INSPECTION_METHOD+'</td>'
+					 
+					  
 			var Remarks = obj[i].Remark1!=null?obj[i].Remark1:' ';
-			ShowTable+='<td>'+Remarks+'</td></tr>'
+			var Spc_num = obj[i].SPC_NUM!=null?obj[i].SPC_NUM:'';
+			var Dim_location = obj[i].DIM_LOCATION!=null?obj[i].DIM_LOCATION:'';
+			ShowTable+='<td>'+Remarks+'</td>'
+			 +'<td>'+Spc_num+'</td>'
+			 +'<td>'+Dim_location+'</td></tr>'
 		}
 		ShowTable+="</tbody></table>";
 		$(".bottom").append(ShowTable);

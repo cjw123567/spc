@@ -29,13 +29,13 @@
 	</div>
 	<div class="bottom" style="overflow: auto;">
 	
-	<!-- <table class='table table-hover table-bordered show-table' id='CTPSelect_Table'>
+	<!--   <table class='table table-hover table-bordered show-table' id='CTPSelect_Table'>
 	<thead>
 	<tr>
-	<th style="text-align: center; color: red;">專案名稱</th>
+	<th style="text-align: center; color: red; background: ">專案名稱</th>
 	</tr>
 	</thead>
-	<table> -->
+	<table>  -->
 	</div>
 </body>
 </html>
