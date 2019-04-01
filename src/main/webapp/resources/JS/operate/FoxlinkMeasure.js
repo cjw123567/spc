@@ -1,3 +1,4 @@
+var start,counts;
 $(document).ready(function(){
 	var reg=/^[0-9]+.?[0-9]*$/;
 	init();
@@ -347,6 +348,15 @@ $(document).ready(function(){
 						"<input type='button' name='submitA' id='submitA' value='資料上傳' class='BT'></td></tr></tfoot></table>";
 		$('.bottom').html(tableContext);
 		
+		
+		//設置定時提交表單
+		start=new Date();
+		start=Date.parse(start)/1000;
+		counts=600;
+
+		//設定一個時間自動執行"CountDown()"
+		window.setTimeout('CountDown()',100);
+		
 		$('#submitA').on('click',function(){
 			var faultList=[];
 			var istrue =0;
@@ -466,5 +476,19 @@ function getdata(obj){
 			jqobj.css('color','red');
 			jqobj.val(data);
 		}
+	}
+}
+
+function CountDown(){
+	var now=new Date();
+	now=Date.parse(now)/1000;
+	var x=parseInt(counts-(now-start),10);
+	if(x>0){
+		timerID=setTimeout("CountDown()", 100)
+	}else{
+		if($("#submitA").length >0){
+			$('#submitA').trigger('click');
+		}
+		return false;
 	}
 }
