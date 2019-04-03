@@ -52,7 +52,8 @@
       	<mvc:interceptor>
       		<mvc:mapping path="/**" />
       		<mvc:mapping path="/" />
-      		<mvc:exclude-mapping path="/Login"/>
+      		<mvc:exclude-mapping path="/Login"/>    
+      		<mvc:exclude-mapping path="/ResetPassword/**"/>
       		<!-- <mvc:exclude-mapping path="/index"/>  -->
       		<mvc:exclude-mapping path="/resources/**"/>  
       		<bean class="com.foxlink.spc.util.CheckLoginUtil"/>

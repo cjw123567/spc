@@ -11,7 +11,7 @@ var _menus ={
 	},{
 		"menuid":"2",
 		"controll":"",
-		"rel":"FoxLinkMeasure.jsp",
+		"rel":"Measure/ShowMeasure",
 		"menuname":"萬濠尺寸量測",
 		"icon":"glyphicon-pencil",
 		"menus_s":[{
@@ -128,7 +128,7 @@ var _menus ={
 	},{
 		"menuid":"15",
 		"controll":"",
-		"rel":"/MeasureData/ShowMeasureData",
+		"rel":"MeasureData/ShowMeasureData",
 		"menuname":"量測數據搜尋",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{

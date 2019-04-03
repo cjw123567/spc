@@ -10,34 +10,33 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.foxlink.spc.dao.UploadTOOLDao;
-import com.foxlink.spc.pojo.SPECTool;
+import com.foxlink.spc.dao.UploadOPTestDao;
+import com.foxlink.spc.pojo.SPECOPTest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-@Service("UploadTOOLService")
+@Service("UploadOPTestService")
 @Transactional
-public class UploadTOOLService {
-	private UploadTOOLDao uploadTOOLDao;
-	private static Logger logger = Logger.getLogger(UploadTOOLService.class);
+public class UploadOPTestService {
+	private static Logger logger = Logger.getLogger(UploadOPTestService.class);
+	private UploadOPTestDao uploadOPTestDao;
 	
-	@Autowired
-	public UploadTOOLService(UploadTOOLDao uploadTOOLDao) {
-		this.uploadTOOLDao = uploadTOOLDao;
+	public UploadOPTestService(UploadOPTestDao uploadOPTestDao) {
+		this.uploadOPTestDao = uploadOPTestDao;
 	}
 	
 	public String CheckProName(String strProName) {
-		
-		return uploadTOOLDao.CheckProName(strProName);
+		// TODO Auto-generated method stub
+		return uploadOPTestDao.CheckProName(strProName);
 	}
-	
-	public String uploadOK(MultipartFile file,String strUserName) {
+
+	public String uploadOK(MultipartFile file, String strUserName) {
+		// TODO Auto-generated method stub
 		String fileName = file.getOriginalFilename();
 		String fileName2 = fileName.substring(0, fileName.indexOf("."));
 		String filePath = "D:/ExcelBack/Spec/"+fileName;// 存储到服务器上的路径.
@@ -58,15 +57,15 @@ public class UploadTOOLService {
 
 			Sheet sheet = wb.getSheetAt(0); // 读取sheet(页) 这里选择第0页
 			Integer totoalRows = sheet.getLastRowNum(); // 获取总行数量
-			if (uploadTOOLDao.SelectProName(fileName2)>0) {
-				if (uploadTOOLDao.DeleteProName(fileName2)>0) {
+			if (uploadOPTestDao.SelectProName(fileName2)>0) {
+				if (uploadOPTestDao.DeleteProName(fileName2)>0) {
 					for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 						Row row = sheet.getRow(rowIndex);// 获得当前行
 						int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
 						if (lastCellNum != 5) {
 							return strResurt = "Excel列数应为5，此处为" + lastCellNum;
 						}
-						uploadTOOLDao.uploadOK(fileName2,strUserName, row);
+						uploadOPTestDao.uploadOK(fileName2,strUserName, row);
 						x++;
 					}
 				
@@ -78,7 +77,7 @@ public class UploadTOOLService {
 					if (lastCellNum != 5) {
 						return strResurt = "Excel列数应为5，此处为" + lastCellNum;
 					}
-					uploadTOOLDao.uploadOK(fileName2,strUserName, row);
+					uploadOPTestDao.uploadOK(fileName2,strUserName, row);
 					x++;
 				}
 				
@@ -98,10 +97,10 @@ public class UploadTOOLService {
 		return "规格书已上传，插入了" + x + "行数据 ," + strResurt;
 	}
 
-	public String ShowToolSpec(String strProNumber2V) {
+	public String showOPTestSpc(String str2v) {
 		// TODO Auto-generated method stub
 		JsonObject result = new JsonObject();
-		List<SPECTool>SpecList = uploadTOOLDao.ShowToolSpec(strProNumber2V);
+		List<SPECOPTest>SpecList = uploadOPTestDao.ShowOPTestSpc(str2v);
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		if(SpecList.size()==0||SpecList==null) {
 			result.addProperty("StatusCode", "500");
@@ -110,8 +109,7 @@ public class UploadTOOLService {
 			result.addProperty("StatusCode", "200");
 			result.addProperty("message", gson.toJson(SpecList));
 		}
-		
-		
 		return result.toString();
 	}
+
 }
