@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	
+
 	 if (window != top) {    
 	        top.location.href = location.href;    
 	    }	 
@@ -14,4 +16,5 @@ $(document).ready(function(){
 			$.cookie(COOKIE_NAME,null,{path:'/'});
 		}
 	})
+	
 })

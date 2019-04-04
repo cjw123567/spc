@@ -56,7 +56,7 @@
   				<!-- Tab panes -->
   				<div class="tab-content">
   				  <div role="tabpanel" class="tab tab-pane active" id="home">
-  				  	<div class="login">
+  				  	<div class="login" >
   				  		<form method="post" action="login">
   							<div class="form-group">
   							  <label for="exampleInputAccount">賬號</label>
@@ -67,7 +67,9 @@
   							  <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" name = "password">			  
   							 </div>
 							 <div class="ckbox">
-							 	<input type="checkbox" name="check" id="check"/><span>記住賬號</span>
+							 	<input type="checkbox" name="check" id="check"/><span id="remember">記住賬號</span>
+							 	<a href="/spc/SendMail/MailMessage" id="forgetPassword">忘记密碼?</a>
+							  
 							 </div>
   							 <div class="tips">
   							 	<c:if test="${not empty error}">
