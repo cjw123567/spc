@@ -51,7 +51,7 @@ public class ResetPasswordDao {
 	public List<ResetPassword> CheckAccount(String account) {
 		accountId = account;
 		String strResult = null ;
-		String strSQL = "SELECT USERNAME,PASSWORD,CHINESENAME,DEPARTMENTCODE  FROM USER_DATA  WHERE USERNAME = '"+account+"'";
+		String strSQL = "SELECT USERNAME,PASSWORD,CHINESENAME,DEPARTMENTCODE  FROM SWIPE.USER_DATA  WHERE USERNAME = '"+account+"'";
 		System.out.println(strSQL);
 		 List<ResetPassword> SpecList = new ArrayList<>();
 		try {
@@ -95,7 +95,7 @@ public int SetNewPassword(String newPassword,String newPassword1) {
 	//AND PASSWORD ='"+oldPassword+"'AND CHINESENAME ='"+name+"' 'AND DEPARTMENTCODE ='"+deptid+"'
 	int iCount = -1;
 	if (newPassword.equals(newPassword1))  {
-	String strSQL = "UPDATE USER_DATA SET PASSWORD  = '"+newPassword+"' WHERE USERNAME = '"+accountId+"' ";
+	String strSQL = "UPDATE SWIPE.USER_DATA SET PASSWORD  = '"+newPassword+"' WHERE USERNAME = '"+accountId+"' ";
 		
 		System.out.println(strSQL);
 		System.out.println(oldPassword);
