@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
-	<script type="text/javascript" src="../resources/JS/operate/MeasureData.js"></script>
+	<script type="text/javascript" src="../resources/JS/operate/MeasureDataTOOL.js"></script>
 </head>
 <body>
 <div class="top">
@@ -63,7 +63,7 @@
 					<option>禁止选择</option>
 				</select>
 			</div>
-			<label for="pro-Name" class="col-sm-1 control-label">專案名稱:
+			<label for="pro-Name" class="col-sm-1 control-label">專案名稱(*):
 			</label>
 			<div class="col-sm-2">
 				<select id="pro-Name" name="pro-Name" class="form-control">
@@ -79,14 +79,6 @@
 			</div>
 		</div>
 		<div class="form-box">
-			<label for="measure-Status" class="col-sm-1 control-label">量測階段(*):
-			</label>
-			<div class="col-sm-2">
-				<select id="measure-Status" name="check-pro" class="form-control">//
-					<option>禁止选择</option>
-				</select>
-			</div>
-
 			<label for="dpick1" class="col-sm-1 control-label">搜尋日期(*):
 			</label>
 			<div class="col-sm-2">
@@ -97,13 +89,13 @@
 					</select>
 				</div>
 			</div>
-			<div> <button type="button" class="btn btn-primary btn-main" id="QueryOK" style="width: 80px;height: 35px;">查詢</button></div>
+			<div> <button type="button" class="btn btn-primary btn-main" id="QueryOK" style="width: 80px;height:35px">查詢</button></div>
 		</div>
 	</form>
 </div>
 
 <div class="bottom" style = "overflow:auto">
-	<table class="table table-hover table-bordered show-table" style="width: 3300px;" id="linkManageTable">
+	<table class="table table-hover table-bordered show-table" style="width:90%;" id="linkManageTable">
 		<thead>
 		<%--<tr>--%>
 			<%--<th>日期時間</th>--%>

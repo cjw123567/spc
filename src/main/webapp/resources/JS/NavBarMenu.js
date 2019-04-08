@@ -20,7 +20,7 @@ var _menus ={
 	},{
 		"menuid":"3",
 		"controll":"",
-		"rel":"",
+		"rel":"EleScaleMeasure/ShowEleScaleMeasure",
 		"menuname":"電子稱重量量測",
 		"icon":"glyphicon-pencil",
 		"menus_s":[{
@@ -137,7 +137,7 @@ var _menus ={
 	},{
 		"menuid":"16",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataEleScale/ShowMeasureDataEleScale",
 		"menuname":"量測數據搜尋(電子稱)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
@@ -155,7 +155,7 @@ var _menus ={
 	},{
 		"menuid":"18",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataTOOL/ShowMeasureDataTOOL",
 		"menuname":"量測數據搜尋(TOOL)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
@@ -164,7 +164,7 @@ var _menus ={
 	},{
 		"menuid":"19",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataOPTest/ShowMeasureDataOPTest",
 		"menuname":"量測數據搜尋(OPTest)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{

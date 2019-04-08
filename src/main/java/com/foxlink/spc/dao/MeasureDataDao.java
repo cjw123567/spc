@@ -31,7 +31,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShowMeasureDataRequire方法異常：" + e);
         }
         return list_dci;
-    }
+    }//查詢下拉框的所有值
 
     public List<MeasureDataResultInfo> ShowMeasureDataResult() {
         String sql = "SELECT DATETIME ,WORKSHOP ,INSPECTION_ITEM ,INSPECTION_CONTENT ,NOMINAL_DIM ,UPPER_DIM ,LOWER_DIM ,STATUS ,PERIOD ,FREQUENCY , INSPECTION_METHOD ,SPC_NUM ,MEASURE_VALUE1 ,MEASURE_VALUE2 ,MEASURE_VALUE3 ,MEASURE_VALUE4 ,MEASURE_VALUE5 ,MEASURE_VALUE6 , MEASURE_VALUE7 ,MEASURE_VALUE8 ,MEASURE_VALUE9 ,MEASURE_VALUE10 ,MEASURE_VALUE11 ,MEASURE_VALUE12 ,MEASURE_VALUE13 ,MEASURE_VALUE14 , MEASURE_VALUE15 ,MEASURE_VALUE16 ,MEASURE_VALUE17 ,MEASURE_VALUE18 ,MEASURE_VALUE19 ,MEASURE_VALUE20 ,MEASURE_VALUE21 ,MEASURE_VALUE22 , MEASURE_VALUE23 ,MEASURE_VALUE24 ,MEASURE_VALUE25 ,MEASURE_VALUE26 ,MEASURE_VALUE27 ,MEASURE_VALUE28 ,MEASURE_VALUE29 ,MEASURE_VALUE30 , MEASURE_VALUE31 ,MEASURE_VALUE32 ,MEASURE_RESULT ,PERSONNEL_ID  FROM SPC.MEASURE_DATA";
@@ -46,7 +46,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShhowMeasureDataResult方法異常：" + e);
         }
         return list_dcResult;
-    }
+    }//查詢表單
 
     public List<MeasureDataResultInfo> ShowMeasureDataResult(String StrFactory,String StrLine,String StrPartNumberV,String StrStatus,String date) {
         String sql = "SELECT DATETIME ,WORKSHOP ,INSPECTION_ITEM ,INSPECTION_CONTENT ,NOMINAL_DIM ,UPPER_DIM" +
@@ -72,7 +72,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShhowMeasureDataResult方法異常：" + e);
         }
         return list_dcResult;
-    }
+    }//按條件查表單
 
     public List<MeasureDataRequireInfo> FactoryDropdownBoxIf(String StrFactory) {
         String sql = "SELECT distinct(LINE_NUMBER) FROM SPC.MEASURE_DATA md WHERE md.Factory='"+StrFactory+"' ORDER BY LINE_NUMBER ASC";
@@ -102,7 +102,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShowDay方法異常：" + e);
         }
         return list_dci;
-    }
+    }//查詢下拉框日期的值
 
     public List<MeasureDataRequireInfo> ShowFactory() {
         String sql = "";
@@ -116,7 +116,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShowFactory方法異常：" + e);
         }
         return list_dci;
-    }
+    }//查詢廠區
 
     public List<MeasureDataRequireInfo> ShowLine() {
         String sql = "";
@@ -130,7 +130,8 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShowLine方法異常：" + e);
         }
         return list_dci;
-    }
+    }//查詢綫別
+
     public List<MeasureDataRequireInfo> ShowProjectName() {
         String sql = "";
         List<MeasureDataRequireInfo> list_dci = new ArrayList<>();
@@ -172,10 +173,21 @@ public class MeasureDataDao {
         }
         return list_dci;
     }
-    public List<MeasureDataRequireInfo> ShowPartNumberV(String StrFactory,String StrLine) {
+    public List<MeasureDataRequireInfo> ShowPartNumberV(String StrFactory,String StrLine,String ProName) {
         String sql = "";
         List<MeasureDataRequireInfo> list_dci = new ArrayList<>();
-        try {
+        if (ProName!=""){
+            try {
+                RowMapper<MeasureDataRequireInfo> mapper = new BeanPropertyRowMapper<>(MeasureDataRequireInfo.class);
+                sql = "SELECT distinct(PART_NUMBER_V) FROM SPC.MEASURE_DATA md WHERE md.FACTORY='"+StrFactory+"' AND md.LINE_NUMBER='"+StrLine+"' AND md.PROJECT_NAME='"+ProName+"' ORDER BY PART_NUMBER_V ASC";
+                list_dci = jdbcTemplate.query(sql, mapper);
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.error("MeasureDataDao-->ShowPartNumberV_ProName方法異常：" + e);
+            }
+            return list_dci;
+        }
+             try {
             RowMapper<MeasureDataRequireInfo> mapper = new BeanPropertyRowMapper<>(MeasureDataRequireInfo.class);
             sql = "SELECT distinct(PART_NUMBER_V) FROM SPC.MEASURE_DATA md WHERE md.FACTORY='"+StrFactory+"' AND md.LINE_NUMBER='"+StrLine+"' ORDER BY PART_NUMBER_V ASC";
             list_dci = jdbcTemplate.query(sql, mapper);
@@ -184,6 +196,7 @@ public class MeasureDataDao {
             logger.error("MeasureDataDao-->ShowPartNumberV方法異常：" + e);
         }
         return list_dci;
+
     }
 
     public List<MeasureDataRequireInfo> ShowStatus() {
@@ -199,12 +212,23 @@ public class MeasureDataDao {
         }
         return list_dci;
     }
-    public List<MeasureDataRequireInfo> ShowStatus(String StrFactory,String StrLine) {
+    public List<MeasureDataRequireInfo> ShowStatus(String StrFactory,String StrLine,String proName,String partVerion) {
         String sql = "";
         List<MeasureDataRequireInfo> list_dci = new ArrayList<>();
+        if (proName!="" && partVerion!=""){
+            try {
+                RowMapper<MeasureDataRequireInfo> mapper = new BeanPropertyRowMapper<>(MeasureDataRequireInfo.class);
+                sql = "SELECT distinct(STATUS) FROM SPC.MEASURE_DATA md  WHERE md.FACTORY='"+StrFactory+"' AND md.LINE_NUMBER='"+StrLine+"' AND md.PROJECT_NAME='"+proName+"' AND md.PART_NUMBER_V='"+partVerion+"' ORDER BY md.STATUS ASC";
+                list_dci = jdbcTemplate.query(sql, mapper);
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.error("MeasureDataDao-->ShowStatus_partVerion方法異常：" + e);
+            }
+            return list_dci;
+        }
         try {
             RowMapper<MeasureDataRequireInfo> mapper = new BeanPropertyRowMapper<>(MeasureDataRequireInfo.class);
-            sql = "SELECT distinct(STATUS) FROM SPC.MEASURE_DATA md  WHERE md.FACTORY='"+StrFactory+"' AND md.LINE_NUMBER='"+StrLine+"' ORDER BY md.STATUS ASC";
+            sql = "SELECT distinct(STATUS) FROM SPC.MEASURE_DATA md  WHERE md.FACTORY='"+StrFactory+"' AND md.LINE_NUMBER='"+StrLine+"' AND md.PART_NUMBER_V='"+partVerion+"' ORDER BY md.STATUS ASC";
             list_dci = jdbcTemplate.query(sql, mapper);
         } catch (Exception e) {
             e.printStackTrace();

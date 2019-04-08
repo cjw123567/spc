@@ -1,45 +1,32 @@
 package com.foxlink.spc.service;
 
-import com.foxlink.spc.dao.MeasureDataDao;
-import com.foxlink.spc.pojo.MeasureDataRequireInfo;
-import com.foxlink.spc.pojo.MeasureDataResultInfo;
+import com.foxlink.spc.dao.MeasureDataOPTestDao;
+import com.foxlink.spc.pojo.MeasureDataOPTestRequireInfo;
+import com.foxlink.spc.pojo.MeasureDataOPTestResultInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
-@Service("MeasureDataService")
-public class MeasureDataService {
-    private static Logger logger = Logger.getLogger(MeasureDataService.class);
-    private MeasureDataDao MeasureDataDao;
+@Service("MeasureDataOPTestService")
+public class MeasureDataOPTestService {
+    private static Logger logger = Logger.getLogger(MeasureDataOPTestService.class);
+    private MeasureDataOPTestDao MeasureDataOPTestDao;
 
     @Autowired
-    public void setInkManageDao(MeasureDataDao MeasureDataDao) {
-        this.MeasureDataDao = MeasureDataDao;
+    public void setInkManageDao(MeasureDataOPTestDao MeasureDataOPTestDao) {
+        this.MeasureDataOPTestDao = MeasureDataOPTestDao;
     }
 
-    public String ShowMeasureDataRequire() {
-        JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> dci_list = MeasureDataDao.ShowMeasureDataRequire();
-        Gson gson = new GsonBuilder().serializeNulls().create();
-        if (dci_list.size() == 0 || dci_list == null) {
-            result.addProperty("StatusCode", "500");
-            result.addProperty("message", "查無數據");
-        } else {
-            result.addProperty("StatusCode", "200");
-            result.addProperty("message", gson.toJson(dci_list));
-        }
-        System.out.println(result.toString());
-        return result.toString();
-    }
 
-    public String ShowMeasureDataResult() {
+    public String ShowMeasureDataOPTestResult() {
         JsonObject result = new JsonObject();
-        List<MeasureDataResultInfo> list_dcResult = MeasureDataDao.ShowMeasureDataResult();
+        List<MeasureDataOPTestResultInfo> list_dcResult = MeasureDataOPTestDao.ShowMeasureDataOPTestResult();
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -51,9 +38,24 @@ public class MeasureDataService {
         System.out.println(result.toString());
         return result.toString();
     }
-    public String ShowMeasureDataResult(String StrFactory,String StrLine,String StrPartNumberV,String StrStatus,String date) {
+
+    public String ShowMeasureDataOPTestResult(String StrFactory,String StrLine,String StrPartNumberV,String date,String StrProjectName,String StrTestType) {
         JsonObject result = new JsonObject();
-        List<MeasureDataResultInfo> list_dcResult = MeasureDataDao.ShowMeasureDataResult(StrFactory,StrLine,StrPartNumberV,StrStatus,date);
+        List<MeasureDataOPTestResultInfo> list_dcResult = MeasureDataOPTestDao.ShowMeasureDataOPTestResult(StrFactory,StrLine,StrPartNumberV,date,StrProjectName,StrTestType);
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        if (list_dcResult.size() == 0 || list_dcResult == null) {
+            result.addProperty("StatusCode", "500");
+            result.addProperty("message", "查無數據");
+        } else {
+            result.addProperty("StatusCode", "200");
+            result.addProperty("message", gson.toJson(list_dcResult));
+        }
+        System.out.println(result.toString());
+        return result.toString();
+    }//KAPPA測試
+    public String ShowMeasureDataOPTestResult1(String StrFactory,String StrLine,String StrPartNumberV,String date,String StrProjectName,String StrTestType) {//陷阱測試
+        JsonObject result = new JsonObject();
+        List<MeasureDataOPTestResultInfo> list_dcResult = MeasureDataOPTestDao.ShowMeasureDataOPTestResult1(StrFactory,StrLine,StrPartNumberV,date,StrProjectName,StrTestType);
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -65,10 +67,11 @@ public class MeasureDataService {
         System.out.println(result.toString());
         return result.toString();
     }
+
 
     public String FactoryDropdownBoxIf(String StrFactory) {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> dci_list = MeasureDataDao.FactoryDropdownBoxIf(StrFactory);
+        List<MeasureDataOPTestRequireInfo> dci_list = MeasureDataOPTestDao.FactoryDropdownBoxIf(StrFactory);
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (dci_list.size() == 0 || dci_list == null) {
             result.addProperty("StatusCode", "500");
@@ -81,9 +84,9 @@ public class MeasureDataService {
         return result.toString();
     }
 
-    public String ShowDropdownBoxDay(String StrFactory,String StrLine,String StrPartNumberV,String StrStatus,String date) {
+    public String ShowDropdownBoxDay(String StrFactory,String StrLine,String StrPartNumberV,String date,String proName) {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowDay(StrFactory,StrLine,StrPartNumberV,StrStatus,date);
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowDay(StrFactory,StrLine,StrPartNumberV,date,proName);
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -98,7 +101,7 @@ public class MeasureDataService {
 
     public String ShowDropdownBoxFactory() {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowFactory();
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowFactory();
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -113,7 +116,7 @@ public class MeasureDataService {
 
     public String ShowDropdownBoxLine() {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowLine();
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowLine();
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -128,7 +131,7 @@ public class MeasureDataService {
 
     public String ShowDropdownBoxProjectName() {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowProjectName();
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowProjectName();
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -142,7 +145,7 @@ public class MeasureDataService {
     }//獲取專案名稱
     public String ShowDropdownBoxProjectName(String StrFactory, String StrLine) {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowProjectName(StrFactory,StrLine);
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowProjectName(StrFactory,StrLine);
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -157,7 +160,7 @@ public class MeasureDataService {
 
     public String ShowDropdownBoxPartNumberV() {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowPartNumberV();
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowPartNumberV();
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -169,9 +172,9 @@ public class MeasureDataService {
         System.out.println(result.toString());
         return result.toString();
     }//獲取料號版本
-    public String ShowDropdownBoxPartNumberV(String StrFactory,String StrLine,String ProName) {
+    public String ShowDropdownBoxPartNumberV(String StrFactory,String StrLine) {
         JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowPartNumberV(StrFactory,StrLine,ProName);
+        List<MeasureDataOPTestRequireInfo> list_dcResult = MeasureDataOPTestDao.ShowPartNumberV(StrFactory,StrLine);
         Gson gson = new GsonBuilder().serializeNulls().create();
         if (list_dcResult.size() == 0 || list_dcResult == null) {
             result.addProperty("StatusCode", "500");
@@ -183,34 +186,5 @@ public class MeasureDataService {
         System.out.println(result.toString());
         return result.toString();
     }//獲取料號版本
-
-    public String ShowDropdownBoxStatus() {
-        JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowStatus();
-        Gson gson = new GsonBuilder().serializeNulls().create();
-        if (list_dcResult.size() == 0 || list_dcResult == null) {
-            result.addProperty("StatusCode", "500");
-            result.addProperty("message", "ShowDropdownBoxStatus-->量測階段查無數據");
-        } else {
-            result.addProperty("StatusCode", "200");
-            result.addProperty("message", gson.toJson(list_dcResult));
-        }
-        System.out.println(result.toString());
-        return result.toString();
-    }//獲取測量階段
-    public String ShowDropdownBoxStatus(String StrFactory,String StrLine,String proName,String partVerion) {
-        JsonObject result = new JsonObject();
-        List<MeasureDataRequireInfo> list_dcResult = MeasureDataDao.ShowStatus(StrFactory,StrLine,proName,partVerion);
-        Gson gson = new GsonBuilder().serializeNulls().create();
-        if (list_dcResult.size() == 0 || list_dcResult == null) {
-            result.addProperty("StatusCode", "500");
-            result.addProperty("message", "ShowDropdownBoxStatus-->量測階段查無數據");
-        } else {
-            result.addProperty("StatusCode", "200");
-            result.addProperty("message", gson.toJson(list_dcResult));
-        }
-        System.out.println(result.toString());
-        return result.toString();
-    }//獲取測量階段
 }
 

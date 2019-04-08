@@ -93,9 +93,9 @@ public class MeasureDataController {
 
     @RequestMapping(value = "/ShowDropdownBoxPartNumbers", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String ShowDropdownBoxPartNumbers(@RequestParam("Factory") String Factory, @RequestParam("LINE_NUMBER") String Line) {
+    public String ShowDropdownBoxPartNumbers(@RequestParam("Factory") String Factory, @RequestParam("LINE_NUMBER") String Line, @RequestParam("ProName") String ProName) {
         MeasureDataService = (MeasureDataService) context.getBean("MeasureDataService");
-        return MeasureDataService.ShowDropdownBoxPartNumberV(Factory, Line);
+        return MeasureDataService.ShowDropdownBoxPartNumberV(Factory, Line,ProName);
     }
 
     @RequestMapping(value = "/ShowDropdownBoxStatus", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
@@ -107,9 +107,9 @@ public class MeasureDataController {
 
     @RequestMapping(value = "/ShowDropdownBoxStatuss", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String ShowDropdownBoxStatuss(@RequestParam("Factory") String Factory, @RequestParam("LINE_NUMBER") String Line) {
+    public String ShowDropdownBoxStatuss(@RequestParam("Factory") String Factory, @RequestParam("LINE_NUMBER") String Line, @RequestParam("ProName") String proName,@RequestParam("PartVerion") String partVerion) {
         MeasureDataService = (MeasureDataService) context.getBean("MeasureDataService");
-        return MeasureDataService.ShowDropdownBoxStatus(Factory, Line);
+        return MeasureDataService.ShowDropdownBoxStatus(Factory, Line,proName,partVerion);
     }
 
 }
