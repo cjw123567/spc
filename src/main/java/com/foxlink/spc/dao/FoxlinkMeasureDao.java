@@ -127,7 +127,7 @@ public class FoxlinkMeasureDao {
 				sql += " AND Project_Name = ? ";
 				params.add(pro_Name);
 			}
-			sql += " AND Part_Number_V = ? AND Status = ?  group by Frequency ";//AND Inspection_Method like '2.5D'
+			sql += " AND Part_Number_V = ? AND Status = ? AND Inspection_Method like '2.5D'  group by Frequency ";
 			params.add(part_version);
 			params.add(stutas);
 			Frequencylist = jdbcTemplate.queryForList(sql,params.toArray());
@@ -149,7 +149,7 @@ public class FoxlinkMeasureDao {
 				sql += " AND Project_Name = ? ";
 				params.add(saveMeasure.getProjectName());
 			}
-			sql += " AND Part_Number_V=? AND Status=? AND Frequency=? order by Workshop";// AND Inspection_Method like '2.5D'
+			sql += " AND Part_Number_V=? AND Status=? AND Frequency=? AND Inspection_Method like '2.5D' order by Workshop";
 			params.add(saveMeasure.getPartVersion());
 			params.add(saveMeasure.getStatus());
 			params.add(saveMeasure.getFrequency());
@@ -198,7 +198,7 @@ public class FoxlinkMeasureDao {
 				params.add(saveMeasure.getMachineNumber());
 			}
 			sql += " AND Part_Number_V=? AND Status=? AND Frequency=? and period=? and Factory=? "
-					+ " and line_number=? and date1 = to_char(sysdate,'yyyy-mm-dd') order by Workshop";// AND Inspection_Method like '2.5D'
+					+ " and line_number=? and date1 = to_char(sysdate,'yyyy-mm-dd')  AND Inspection_Method like '2.5D' order by Workshop";
 			params.add(saveMeasure.getPartVersion());
 			params.add(saveMeasure.getStatus());
 			params.add(saveMeasure.getFrequency());
