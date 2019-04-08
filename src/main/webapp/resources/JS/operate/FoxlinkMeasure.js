@@ -394,6 +394,7 @@ $(document).ready(function(){
 		    			  istrue = istrue + 1;
 		    		  }
 		    	  }
+
 			      if(MeasureSize==0){
 			    	  Measure.Result="OK";
 			      }else{
