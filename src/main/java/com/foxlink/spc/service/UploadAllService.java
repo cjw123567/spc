@@ -41,7 +41,7 @@ public class UploadAllService {
 	public String uploadOK(MultipartFile file,String strUserName) {
 		String fileName = file.getOriginalFilename();
 		String fileName2 = fileName.substring(0, fileName.indexOf("."));
-		String filePath = "D:/ExcelBack/Spec/"+fileName;// 存储到服务器上的路径.
+		String filePath = "D:/ExcelBack/Spec/Basic/"+fileName;// 存储到服务器上的路径.
 		String strResurt="";
 		int totalRecord = 0;
 		Workbook wb = null;
@@ -64,11 +64,12 @@ public class UploadAllService {
 					for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 						Row row = sheet.getRow(rowIndex);// 获得当前行
 						int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-						if (lastCellNum != 13) {
+						if (lastCellNum < 13) {
 							return strResurt = "Excel列数应为13，此处为" + lastCellNum;
-						}
+						}else {
 						uploadAllDao.uploadOK(x, fileName2, strUserName, row);
 						x++;
+						}
 					}
 				
 				}
@@ -76,11 +77,12 @@ public class UploadAllService {
 				for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 					Row row = sheet.getRow(rowIndex);// 获得当前行
 					int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-					if (lastCellNum != 13) {
+					if (lastCellNum < 13) {
 						return strResurt = "Excel列数应为13，此处为" + lastCellNum;
-					}
+					}else {
 					uploadAllDao.uploadOK(x, fileName2, strUserName, row);
 					x++;
+					}
 				}
 				
 			}

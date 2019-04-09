@@ -24,7 +24,7 @@ private static Logger logger = Logger.getLogger(ResetPasswordService.class);
 	public RetrievePasswordService(RetrievePasswordDao retrievePasswordDao) {
 		this.retrievePasswordDao = retrievePasswordDao;
 	}
-	//查詢工號
+	    //查詢工號
 		public String CheckAccount(String strPartNumber) {
 			System.out.println("輸入的工號=========>>:"+strPartNumber);
 			JsonObject result = new JsonObject();
