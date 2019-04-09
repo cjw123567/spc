@@ -87,6 +87,6 @@ public class SaveMeasure {
 				+ ", TicketNumber=" + TicketNumber + ", MeasurementNumber=" + MeasurementNumber + ", MachineNumber="
 				+ MachineNumber + ", Personnel_ID=" + Personnel_ID + "]";
 	}
-	
-	
+
+
 }

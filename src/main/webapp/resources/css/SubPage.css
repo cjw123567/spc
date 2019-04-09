@@ -30,8 +30,17 @@ html,body{
 }
 		
 .form-horizontal .form-box{
-	display:inline-block;
-	width:80%;
+	 display:inline-block;
+	 width:80%;
+ }
+
+.cy {
+	display: inline-block;
+	width: 80%;
+}
+.cy1 {
+	display: inline-block;
+	width: 80%;
 }
 .btn-main{
 	width:150px;

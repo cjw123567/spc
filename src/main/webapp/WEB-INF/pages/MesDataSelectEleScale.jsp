@@ -11,7 +11,14 @@
 	<script type="text/javascript" src="../resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
-	<script type="text/javascript" src="../resources/JS/operate/MeasureData.js"></script>
+	<script type="text/javascript" src="../resources/JS/operate/MeasureDataEleScale.js"></script>
+	<style>
+		.table .xqwcy{
+			text-align:center;
+			vertical-align:middle;
+		}
+
+	</style>
 </head>
 <body>
 <div class="top">
@@ -90,7 +97,6 @@
 			<label for="dpick1" class="col-sm-1 control-label">搜尋日期(*):
 			</label>
 			<div class="col-sm-2">
-				<%--<input id="dpick1" name="search-time" style="height:34px;" class="Wdate form-control" type="text" onClick="WdatePicker({maxDate:'%y-%M-{%d}'})" autocomplete="off">--%>
 				<div class="col-sm-2">
 					<select id="dpick1" name="search-time" style="width:215px;"  class="form-control"  >
 						<option>禁止选择</option>
@@ -103,56 +109,8 @@
 </div>
 
 <div class="bottom" style = "overflow:auto">
-	<table class="table table-hover table-bordered show-table" style="width: 3300px;" id="linkManageTable">
+	<table class="table table-hover table-bordered show-table" style="width: 90%; text-align: center;" id="linkManageTable" >
 		<thead>
-		<%--<tr>--%>
-			<%--<th>日期時間</th>--%>
-			<%--<th>尺寸/工站號</th>--%>
-			<%--<th>檢驗項目</th>--%>
-			<%--<th>檢驗内容</th>--%>
-			<%--<th>尺寸</th>--%>
-			<%--<th>上限</th>--%>
-			<%--<th>下限</th>--%>
-			<%--<th>測量階段</th>--%>
-			<%--<th>節次</th>--%>
-			<%--<th>頻率</th>--%>
-			<%--<th>檢驗方式</th>--%>
-			<%--<th>機台號</th>--%>
-			<%--<th>測量-1</th>--%>
-			<%--<th>測量-2</th>--%>
-			<%--<th>測量-3</th>--%>
-			<%--<th>測量-4</th>--%>
-			<%--<th>測量-5</th>--%>
-			<%--<th>測量-6</th>--%>
-			<%--<th>測量-7</th>--%>
-			<%--<th>測量-8</th>--%>
-			<%--<th>測量-9</th>--%>
-			<%--<th>測量-10</th>--%>
-			<%--<th>測量-11</th>--%>
-			<%--<th>測量-12</th>--%>
-			<%--<th>測量-13</th>--%>
-			<%--<th>測量-14</th>--%>
-			<%--<th>測量-15</th>--%>
-			<%--<th>測量-16</th>--%>
-			<%--<th>測量-17</th>--%>
-			<%--<th>測量-18</th>--%>
-			<%--<th>測量-19</th>--%>
-			<%--<th>測量-20</th>--%>
-			<%--<th>測量-21</th>--%>
-			<%--<th>測量-22</th>--%>
-			<%--<th>測量-23</th>--%>
-			<%--<th>測量-24</th>--%>
-			<%--<th>測量-25</th>--%>
-			<%--<th>測量-26</th>--%>
-			<%--<th>測量-27</th>--%>
-			<%--<th>測量-28</th>--%>
-			<%--<th>測量-29</th>--%>
-			<%--<th>測量-30</th>--%>
-			<%--<th>測量-31</th>--%>
-			<%--<th>測量-32</th>--%>
-			<%--<th>測量結果</th>--%>
-			<%--<th>人員</th>--%>
-		<%--</tr>--%>
 		</thead>
 		<tbody></tbody>
 	</table>

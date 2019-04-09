@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    initMeasureDataRequire();
+    initMeasureDataEleScaleRequire();
     getDateYear();
 
     function AllClear() {
@@ -17,10 +17,10 @@ $(document).ready(function () {
         $("#dpick1").empty();
     }
 
-    function initMeasureDataRequire() {
+    function initMeasureDataEleScaleRequire() {
         AllClear();
         $.ajax({
-            url: "../MeasureData/ShowDropdownBoxFactory",
+            url: "../MeasureDataEleScale/ShowDropdownBoxFactory",
             type: 'post',
             success: function (result) {
                 var StatusCode = result.StatusCode;
@@ -40,7 +40,7 @@ $(document).ready(function () {
             }
         })//加載廠區下拉框值
         $.ajax({
-            url: "../MeasureData/ShowDropdownBoxLine",
+            url: "../MeasureDataEleScale/ShowDropdownBoxLine",
             type: 'post',
             success: function (result) {
                 var StatusCode = result.StatusCode;
@@ -60,7 +60,7 @@ $(document).ready(function () {
             }
         })//加載綫別下拉框值
         $.ajax({
-            url: "../MeasureData/ShowDropdownBoxProjectName",
+            url: "../MeasureDataEleScale/ShowDropdownBoxProjectName",
             type: 'post',
             success: function (result) {
                 var StatusCode = result.StatusCode;
@@ -80,7 +80,7 @@ $(document).ready(function () {
             }
         })//加載專案名稱下拉框值
         $.ajax({
-            url: "../MeasureData/ShowDropdownBoxPartNumber",
+            url: "../MeasureDataEleScale/ShowDropdownBoxPartNumber",
             type: 'post',
             success: function (result) {
                 var StatusCode = result.StatusCode;
@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         })//加載料號版本下拉框值
         $.ajax({
-            url: "../MeasureData/ShowDropdownBoxStatus",
+            url: "../MeasureDataEleScale/ShowDropdownBoxStatus",
             type: 'post',
             success: function (result) {
                 var StatusCode = result.StatusCode;
@@ -141,7 +141,7 @@ $(document).ready(function () {
                 return;
             }
             $.ajax({
-                url: "../MeasureData/FactoryDropdownBoxIf",
+                url: "../MeasureDataEleScale/FactoryDropdownBoxIf",
                 type: 'post',
                 async: false,
                 data: {Factory: Factory},
@@ -183,7 +183,7 @@ $(document).ready(function () {
                 return;
             }
             $.ajax({
-                url: "../MeasureData/ShowDropdownBoxProjectNames",
+                url: "../MeasureDataEleScale/ShowDropdownBoxProjectNames",
                 type: 'post',
                 async: false,
                 data: {Factory: Factory, LINE_NUMBER: Link},
@@ -205,7 +205,7 @@ $(document).ready(function () {
                 }
             })//獲取專案名稱下拉框值
             $.ajax({
-                url: "../MeasureData/ShowDropdownBoxPartNumbers",
+                url: "../MeasureDataEleScale/ShowDropdownBoxPartNumbers",
                 type: 'post',
                 async: false,
                 data: {Factory: Factory, LINE_NUMBER: Link,ProName:""},
@@ -227,7 +227,6 @@ $(document).ready(function () {
                 }
             })//獲取料號版本下拉框值
 
-
         })//綫別點擊時間
         $("#DateOK").click(function () {
             year = $("#year").find("option:selected").text();
@@ -241,7 +240,7 @@ $(document).ready(function () {
             if (factory != '' && link != '' && partVerion != '' && status != '') {
                 ButDate = true;
                 $.ajax({
-                    url: "../MeasureData/ShowDropdownBoxDay",
+                    url: "../MeasureDataEleScale/ShowDropdownBoxDay",
                     type: 'post',
                     async: false,
                     data: {
@@ -282,12 +281,13 @@ $(document).ready(function () {
         $("#QueryOK").click(function () {
             var factory = $("#fl-Factory").find("option:selected").text();
             var link = $("#fl-Link").find("option:selected").text();
+            var proName = $("#pro-Name").find("option:selected").text();
             var partVerion = $("#part-Verion").find("option:selected").text();
             var status29 = $("#measure-Status").find("option:selected").text();
             var datetime = $("#dpick1").find("option:selected").text();
             if (factory != '' && link != '' && partVerion != '' && status29!= '' && datetime!='') {
                 $.ajax({
-                    url: "../MeasureData/ShowMeasureDataResult",
+                    url: "../MeasureDataEleScale/ShowMeasureDataEleScaleResult",
                     type: 'post',
                     async: false,
                     data: {
@@ -295,7 +295,8 @@ $(document).ready(function () {
                         LINE_NUMBER: link,
                         PART_NUMBER_V: partVerion,
                         STATUS: status29,
-                        DATETIME:datetime
+                        DATETIME:datetime,
+                        ProName:proName
                     },
                     success: function (result) {
                         var StatusCode = result.StatusCode;
@@ -319,91 +320,64 @@ $(document).ready(function () {
                                 "\t\t\t<th>測量階段</th>\n" +
                                 "\t\t\t<th>節次</th>\n" +
                                 "\t\t\t<th>頻率</th>\n" +
-                                "\t\t\t<th>檢驗方式</th>\n" +
-                                "\t\t\t<th>機台號</th>\n" +
                                 "\t\t\t<th>測量-1</th>\n" +
                                 "\t\t\t<th>測量-2</th>\n" +
                                 "\t\t\t<th>測量-3</th>\n" +
                                 "\t\t\t<th>測量-4</th>\n" +
                                 "\t\t\t<th>測量-5</th>\n" +
-                                "\t\t\t<th>測量-6</th>\n" +
-                                "\t\t\t<th>測量-7</th>\n" +
-                                "\t\t\t<th>測量-8</th>\n" +
-                                "\t\t\t<th>測量-9</th>\n" +
-                                "\t\t\t<th>測量-10</th>\n" +
-                                "\t\t\t<th>測量-11</th>\n" +
-                                "\t\t\t<th>測量-12</th>\n" +
-                                "\t\t\t<th>測量-13</th>\n" +
-                                "\t\t\t<th>測量-14</th>\n" +
-                                "\t\t\t<th>測量-15</th>\n" +
-                                "\t\t\t<th>測量-16</th>\n" +
-                                "\t\t\t<th>測量-17</th>\n" +
-                                "\t\t\t<th>測量-18</th>\n" +
-                                "\t\t\t<th>測量-19</th>\n" +
-                                "\t\t\t<th>測量-20</th>\n" +
-                                "\t\t\t<th>測量-21</th>\n" +
-                                "\t\t\t<th>測量-22</th>\n" +
-                                "\t\t\t<th>測量-23</th>\n" +
-                                "\t\t\t<th>測量-24</th>\n" +
-                                "\t\t\t<th>測量-25</th>\n" +
-                                "\t\t\t<th>測量-26</th>\n" +
-                                "\t\t\t<th>測量-27</th>\n" +
-                                "\t\t\t<th>測量-28</th>\n" +
-                                "\t\t\t<th>測量-29</th>\n" +
-                                "\t\t\t<th>測量-30</th>\n" +
-                                "\t\t\t<th>測量-31</th>\n" +
-                                "\t\t\t<th>測量-32</th>\n" +
                                 "\t\t\t<th>測量結果</th>\n" +
                                 "\t\t\t<th>人員</th>\n" +
                                 "\t\t</tr>";
+
                             for (var i = 0; i < obj.length; i++) {
+
+                                if (obj[i].A_MEASURE_VALUE1==null){obj[i].A_MEASURE_VALUE1="NA";}
+                                if (obj[i].B_MEASURE_VALUE1==null){obj[i].B_MEASURE_VALUE1="NA";}
+                                if (obj[i].MEASURE_VALUE1==null){obj[i].MEASURE_VALUE1="NA";}
+                                if (obj[i].A_MEASURE_VALUE2==null){obj[i].A_MEASURE_VALUE2="NA";}
+                                if (obj[i].B_MEASURE_VALUE2==null){obj[i].B_MEASURE_VALUE2="NA";}
+                                if (obj[i].MEASURE_VALUE2==null){obj[i].MEASURE_VALUE2="NA";}
+                                if (obj[i].A_MEASURE_VALUE3==null){obj[i].A_MEASURE_VALUE3="NA";}
+                                if (obj[i].B_MEASURE_VALUE3==null){obj[i].B_MEASURE_VALUE3="NA";}
+                                if (obj[i].MEASURE_VALUE3==null){obj[i].MEASURE_VALUE3="NA";}
+                                if (obj[i].A_MEASURE_VALUE4==null){obj[i].A_MEASURE_VALUE4="NA";}
+                                if (obj[i].B_MEASURE_VALUE4==null){obj[i].B_MEASURE_VALUE4="NA";}
+                                if (obj[i].MEASURE_VALUE4==null){obj[i].MEASURE_VALUE4="NA";}
+                                if (obj[i].A_MEASURE_VALUE5==null){obj[i].A_MEASURE_VALUE5="NA";}
+                                if (obj[i].B_MEASURE_VALUE5==null){obj[i].B_MEASURE_VALUE5="NA";}
+                                if (obj[i].MEASURE_VALUE5==null){obj[i].MEASURE_VALUE5="NA";}
                                 var tableContents = "";
-                                tableContents += '<tr><td>' + obj[i].DATETIME + '</td>'
-                                    + '<td>' + obj[i].WORKSHOP + '</td>'
-                                    + '<td>' + obj[i].INSPECTION_ITEM + '</td>'
-                                    + '<td>' + obj[i].INSPECTION_CONTENT + '</td>'
-                                    + '<td>' + obj[i].NOMINAL_DIM + '</td>'
-                                    + '<td>' + obj[i].UPPER_DIM + '</td>'
-                                    + '<td>' + obj[i].LOWER_DIM + '</td>'
-                                    + '<td>' + obj[i].STATUS + '</td>'
-                                    + '<td>' + obj[i].PERIOD + '</td>'
-                                    + '<td>' + obj[i].FREQUENCY + '</td>'
-                                    + '<td>' + obj[i].INSPECTION_METHOD + '</td>'
-                                    + '<td>' + obj[i].SPC_NUM + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE1 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE2 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE3 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE4 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE5 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE6 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE7 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE8 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE9 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE10 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE11 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE12 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE13 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE14 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE15 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE16 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE17 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE18 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE19 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE20 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE21 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE22 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE23 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE24 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE25 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE26 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE27 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE28 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE29 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE30 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE31 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_VALUE32 + '</td>'
-                                    + '<td>' + obj[i].MEASURE_RESULT + '</td>'
-                                    + '<td>' + obj[i].PERSONNEL_ID + '</td>';
+                                tableContents += '<tr><td class="xqwcy">' + obj[i].DATETIME + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].WORKSHOP + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].INSPECTION_ITEM + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].INSPECTION_CONTENT + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].NOMINAL_DIM + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].UPPER_DIM + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].LOWER_DIM + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].STATUS + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].PERIOD + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].FREQUENCY + '</td>'
+                                    + '<td align=left  width="110px" style="text-align: center" >點膠前:'+obj[i].A_MEASURE_VALUE1+'<br>' +
+                                    '點膠後:'+obj[i].B_MEASURE_VALUE1+'<br>' +
+                                    '量測值:'+obj[i].MEASURE_VALUE1+'<br></td>'
+
+                                    + '<td align=left  width="110px" style="text-align: center" >點膠前:'+obj[i].A_MEASURE_VALUE2+'<br>' +
+                                    '點膠後:'+obj[i].B_MEASURE_VALUE2+'<br>' +
+                                    '量測值:'+obj[i].MEASURE_VALUE2+'<br></td>'
+
+                                    + '<td align=left  width="110px" style="text-align: center">點膠前:'+obj[i].A_MEASURE_VALUE3+'<br>' +
+                                    '點膠後:'+obj[i].B_MEASURE_VALUE3+'<br>' +
+                                    '量測值:'+obj[i].MEASURE_VALUE3+'<br></td>'
+
+                                    + '<td align=left  width="110px" style="text-align: center">點膠前:'+obj[i].A_MEASURE_VALUE4+'<br>' +
+                                    '點膠後:'+obj[i].B_MEASURE_VALUE4+'<br>' +
+                                    '量測值:'+obj[i].MEASURE_VALUE4+'<br></td>'
+
+                                    + '<td align=left  width="110px" style="text-align: center">點膠前:'+obj[i].A_MEASURE_VALUE5+'<br>' +
+                                    '點膠後:'+obj[i].B_MEASURE_VALUE5+'<br>' +
+                                    '量測值:'+obj[i].MEASURE_VALUE5+'<br></td>'
+                                    + '<td class="xqwcy">' + obj[i].MEASURE_RESULT + '</td>'
+                                    + '<td class="xqwcy">' + obj[i].PERSONNEL_ID + '</td>';
                                 $('#linkManageTable tbody').append(tableContents);
                             }
                             $('#linkManageTable thead').append(thead);
@@ -415,7 +389,9 @@ $(document).ready(function () {
                 })//按條件獲取表單裏的值
                 return;
             }
+
             alert("(*)處不能爲空！");
+
         })//查詢按鈕點擊事件
         $("#pro-Name").change(function () {
             var factory = $("#fl-Factory").find("option:selected").text();
@@ -429,7 +405,7 @@ $(document).ready(function () {
                 $("#dpick1").find("option:selected").text("");
                 $("#dpick1").empty();
                 $.ajax({
-                    url: "../MeasureData/ShowDropdownBoxPartNumbers",
+                    url: "../MeasureDataEleScale/ShowDropdownBoxPartNumbers",
                     type: 'post',
                     async: false,
                     data: {Factory: factory, LINE_NUMBER: link,ProName:proName},
@@ -469,7 +445,7 @@ $(document).ready(function () {
                 $("#dpick1").find("option:selected").text("");
                 $("#dpick1").empty();
                 $.ajax({
-                    url: "../MeasureData/ShowDropdownBoxStatuss",
+                    url: "../MeasureDataEleScale/ShowDropdownBoxStatuss",
                     type: 'post',
                     async: false,
                     data: {Factory: factory, LINE_NUMBER: link,ProName:proName,PartVerion:partVerion},
