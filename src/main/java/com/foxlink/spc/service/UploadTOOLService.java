@@ -40,7 +40,7 @@ public class UploadTOOLService {
 	public String uploadOK(MultipartFile file,String strUserName) {
 		String fileName = file.getOriginalFilename();
 		String fileName2 = fileName.substring(0, fileName.indexOf("."));
-		String filePath = "D:/ExcelBack/Spec/"+fileName;// 存储到服务器上的路径.
+		String filePath = "D:/ExcelBack/Spec/Tool/"+fileName;// 存储到服务器上的路径.
 		String strResurt="";
 		int totalRecord = 0;
 		Workbook wb = null;
@@ -63,11 +63,12 @@ public class UploadTOOLService {
 					for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 						Row row = sheet.getRow(rowIndex);// 获得当前行
 						int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-						if (lastCellNum != 5) {
+						if (lastCellNum < 5) {
 							return strResurt = "Excel列数应为5，此处为" + lastCellNum;
-						}
+						}else {
 						uploadTOOLDao.uploadOK(fileName2,strUserName, row);
 						x++;
+						}
 					}
 				
 				}
@@ -75,11 +76,12 @@ public class UploadTOOLService {
 				for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 					Row row = sheet.getRow(rowIndex);// 获得当前行
 					int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-					if (lastCellNum != 5) {
+					if (lastCellNum < 5) {
 						return strResurt = "Excel列数应为5，此处为" + lastCellNum;
-					}
+					}else {
 					uploadTOOLDao.uploadOK(fileName2,strUserName, row);
 					x++;
+					}
 				}
 				
 			}

@@ -39,7 +39,7 @@ public class UploadOPTestService {
 		// TODO Auto-generated method stub
 		String fileName = file.getOriginalFilename();
 		String fileName2 = fileName.substring(0, fileName.indexOf("."));
-		String filePath = "D:/ExcelBack/Spec/"+fileName;// 存储到服务器上的路径.
+		String filePath = "D:/ExcelBack/Spec/OPTest/"+fileName;// 存储到服务器上的路径.
 		String strResurt="";
 		int totalRecord = 0;
 		Workbook wb = null;
@@ -62,11 +62,12 @@ public class UploadOPTestService {
 					for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 						Row row = sheet.getRow(rowIndex);// 获得当前行
 						int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-						if (lastCellNum != 5) {
+						if (lastCellNum < 5) {
 							return strResurt = "Excel列数应为5，此处为" + lastCellNum;
-						}
+						}else {
 						uploadOPTestDao.uploadOK(fileName2,strUserName, row);
 						x++;
+						}
 					}
 				
 				}
@@ -74,11 +75,12 @@ public class UploadOPTestService {
 				for (int rowIndex = 1; rowIndex <= totoalRows; rowIndex++) {
 					Row row = sheet.getRow(rowIndex);// 获得当前行
 					int lastCellNum = row.getPhysicalNumberOfCells(); // 获得当前行的列数
-					if (lastCellNum != 5) {
+					if (lastCellNum < 5) {
 						return strResurt = "Excel列数应为5，此处为" + lastCellNum;
-					}
+					}else {
 					uploadOPTestDao.uploadOK(fileName2,strUserName, row);
 					x++;
+					}
 				}
 				
 			}
