@@ -45,10 +45,12 @@
 			<param-value>classpath:spring/*.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
+		
 	</servlet-mapping>
 
 	<!-- 可以让spring容器随着项目的启动而创建，随项目的关闭而销毁 -->
