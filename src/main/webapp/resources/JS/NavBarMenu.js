@@ -146,7 +146,7 @@ var _menus ={
 	},{
 		"menuid":"17",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataCTP/ShowMeasureDataCTP",
 		"menuname":"量測數據搜尋(CTP)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
