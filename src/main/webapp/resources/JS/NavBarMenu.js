@@ -11,8 +11,8 @@ var _menus ={
 	},{
 		"menuid":"2",
 		"controll":"",
-		"rel":"FoxLinkMeasure.jsp",
-		"menuname":"萬濠尺寸量測",
+		"rel":"Measure/ShowMeasure",
+		"menuname":"FoxLink尺寸量測",
 		"icon":"glyphicon-pencil",
 		"menus_s":[{
 			
@@ -20,7 +20,7 @@ var _menus ={
 	},{
 		"menuid":"3",
 		"controll":"",
-		"rel":"",
+		"rel":"EleScaleMeasure/ShowEleScaleMeasure",
 		"menuname":"電子稱重量量測",
 		"icon":"glyphicon-pencil",
 		"menus_s":[{
@@ -56,7 +56,7 @@ var _menus ={
 	},{
 		"menuid":"7",
 		"controll":"",
-		"rel":"test/ShowLinkManage",
+		"rel":"uploadSpec/uploadSpec.show",
 		"menuname":"規格書上傳",
 		"icon":"glyphicon-open",
 		"menus_s":[{
@@ -65,7 +65,7 @@ var _menus ={
 	},{
 		"menuid":"8",
 		"controll":"",
-		"rel":"CTPFileUpload.jsp",
+		"rel":"UploadSpcCTP/ShowUploadSpcCTP",
 		"menuname":"規格書上傳(CTP)",
 		"icon":"glyphicon-open",
 		"menus_s":[{
@@ -74,7 +74,7 @@ var _menus ={
 	},{
 		"menuid":"9",
 		"controll":"",
-		"rel":"TOOLFileUpload.jsp",
+		"rel":"UploadSpcTOOL/ShowUploadSpcTOOL",
 		"menuname":"規格書上傳(TOOL)",
 		"icon":"glyphicon-open",
 		"menus_s":[{
@@ -83,7 +83,7 @@ var _menus ={
 	},{
 		"menuid":"10",
 		"controll":"",
-		"rel":"OPTestFileUpload.jsp",
+		"rel":"UploadSpcOPTest/ShowUploadSpcOPTest",
 		"menuname":"規格書上傳(OPTest)",
 		"icon":"glyphicon-open",
 		"menus_s":[{
@@ -92,7 +92,7 @@ var _menus ={
 	},{
 		"menuid":"11",
 		"controll":"",
-		"rel":"",
+		"rel":"SelectSpec/ShowSelectSpec",
 		"menuname":"規格書搜尋",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
@@ -101,7 +101,7 @@ var _menus ={
 	},{
 		"menuid":"12",
 		"controll":"",
-		"rel":"",
+		"rel":"SelectSpcCTP/ShowSelectSpcCTP",
 		"menuname":"規格書搜尋(CTP)",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
@@ -110,7 +110,7 @@ var _menus ={
 	},{
 		"menuid":"13",
 		"controll":"",
-		"rel":"",
+		"rel":"SelectSpcTOOL/ShowSelectSpcTOOL",
 		"menuname":"規格書搜尋(TOOL)",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
@@ -119,7 +119,7 @@ var _menus ={
 	},{
 		"menuid":"14",
 		"controll":"",
-		"rel":"",
+		"rel":"SelectSpcOPTest/ShowSelectSpcOPTest",
 		"menuname":"規格書搜尋(OPTest)",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
@@ -128,7 +128,7 @@ var _menus ={
 	},{
 		"menuid":"15",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureData/ShowMeasureData",
 		"menuname":"量測數據搜尋",
 		"icon":"glyphicon-hourglass",
 		"menus_s":[{
@@ -137,7 +137,7 @@ var _menus ={
 	},{
 		"menuid":"16",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataEleScale/ShowMeasureDataEleScale",
 		"menuname":"量測數據搜尋(電子稱)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
@@ -146,7 +146,7 @@ var _menus ={
 	},{
 		"menuid":"17",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataCTP/ShowMeasureDataCTP",
 		"menuname":"量測數據搜尋(CTP)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
@@ -155,7 +155,7 @@ var _menus ={
 	},{
 		"menuid":"18",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataTOOL/ShowMeasureDataTOOL",
 		"menuname":"量測數據搜尋(TOOL)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
@@ -164,7 +164,7 @@ var _menus ={
 	},{
 		"menuid":"19",
 		"controll":"",
-		"rel":"",
+		"rel":"MeasureDataOPTest/ShowMeasureDataOPTest",
 		"menuname":"量測數據搜尋(OPTest)",
 		"icon":"glyphicon glyphicon-globe",
 		"menus_s":[{
