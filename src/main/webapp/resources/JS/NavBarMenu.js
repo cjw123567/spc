@@ -179,7 +179,17 @@ var _menus ={
 		"menus_s":[{
 			
 		}]
-	}]
+	},{
+		"menuid":"21",
+		"controll":"",
+		"rel":"LkTrendChart/query",
+		"menuname":"生成趨勢圖",
+		"icon":"glyphicon glyphicon-globe",
+		"menus_s":[{
+			
+		}]
+	}
+	]
 //	},{
 //		"menuid":"7",
 //		"controll":"UpdateSPEC",
