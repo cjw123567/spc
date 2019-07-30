@@ -366,6 +366,11 @@ public class LkTrendChart {
 		 * 
 		 * sheet.copyRows(2, 20, 21,cellCopyPolicy);
 		 */
+		int iCavQty=Integer.parseInt(listMap.get(0).get("MOLD_CAVITY_QTY").toString());
+		for (int i = iCavQty; i < iSheetSum; i++) {
+			
+			wb.removeSheetAt(i);
+		}
 
 		String strMoldNo = listMap.get(0).get("MOLD_NO").toString();
 		String strNow = new SimpleDateFormat("yyyyMMdd").format(new Date());

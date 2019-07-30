@@ -201,7 +201,7 @@ $(document).ready(function(){
 		var varMoldNO=$('#id-MoldNO').val();
 		var varMOLD_CAVITY_QTY=$('#id-CavQty').val();
 		var varYearMonth=$('#id-TimeValue').val().replace('-','');
-		if(varPartNO==null||varMoldNO==null||varMOLD_CAVITY_QTY==null||varYearMonth==null||varMoldNO=='undefined'){
+		if(varPartNO==null||varMoldNO==null||varMOLD_CAVITY_QTY==null||varYearMonth==null||varMoldNO=='undefined'||varMOLD_CAVITY_QTY=='undefined'){
 			 alert("不能為空"); 
 			return;
 		}
