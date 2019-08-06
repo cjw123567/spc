@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+    <c:url value="../resources/img/loading.gif" var="ajaxLoaderPic"/>
 	<link rel="stylesheet" type="text/css" href="../resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../resources/css/SubPage.css">
 	<script type="text/javascript" src="../resources/jq/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../resources/JS/AjaxCheckSession.js"></script>
 	<script type="text/javascript" src="../resources/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="../resources/JS/operate/LkTrendChart.js"></script>
+	
 	
 </head>
 <style type="text/css">
@@ -27,6 +30,8 @@
 				<col style="width:4%">
 				<col style="width:15%">
 				<col style="width:4%">
+				<col style="width:15%">
+			    <col style="width:5%">
 				<col style="width:15%">
 				<col style="width:5%">
 				<col style="width:8%">
@@ -49,6 +54,12 @@
 				
 			 </select>
 		  </td>
+		  <td align="right">模穴號:</td>
+		  <td >		  
+		     <select id="id-CavNO" name="id-CavNO" class="form-control input-sm">
+				
+			 </select>
+		  </td>
 		  <td align="right">模穴數:</td>
 		  <td>		   
 		     <select id="id-CavQty" name="id-CavQty" class="form-control input-sm">
@@ -62,7 +73,7 @@
 		  <td>
 		     <input style="display:none" id="id-query" class="btn btn-primary btn-sm" type="button"   value="查詢" />
 		      <input id="id-query2" class="btn btn-primary btn-sm" type="submit"    value="导出" />
-		      <iframe name="form" id="form" style="display:none"></iframe>	
+		      
 		  </td>
 	   </tr>
 	 </tbody>
@@ -70,7 +81,11 @@
 	</form>
 	</div>
    <div class="bottom" style = "overflow:auto">
-	   
+   <label id='txtendflag' style="display:none"></label>
+	   		<div class="col-sm-2 col-md-2">
+			   <img src="${ajaxLoaderPic}" id="ajaxLoader" style="display:none" />
+		    </div>
+		    <iframe name="form" id="form"   frameborder="no"  border="0" ></iframe>
 	</div>
 <!-- 	<table class="table table-hover table-bordered">
 		     <colgroup>
@@ -106,7 +121,7 @@
 	    </tbody>
 	</table> -->
 
-	
+		
 
 </body>
 </html>
