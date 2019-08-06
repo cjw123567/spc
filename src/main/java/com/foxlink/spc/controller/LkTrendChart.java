@@ -269,22 +269,27 @@ public class LkTrendChart {
 		listMap = (List<Map<String, Object>>) jdbcTemplate.queryForList(strSQL);
 		} catch (Exception e) {
 			logger.info(e);
+			request.getSession().setAttribute("endflag", "1");//设置结束标记
 			return "查詢數據庫出錯！";
 		}
 		if (listMap.isEmpty()) {
+			request.getSession().setAttribute("endflag", "1");//设置结束标记
 			return "無資料";// 捞取出来的资料是空的，不用继续了。
 		}
 		int iCavSum = Integer.parseInt(listMap.get(0).get("MOLD_CAVITY_QTY").toString());
 		File fi = new File("D:\\offer_template"+iCavSum+".xlsx");
 		if (!fi.exists()) {
+			request.getSession().setAttribute("endflag", "1");//设置结束标记
 			return "offer_template"+iCavSum+"模板文件不存在";
 		}
+
 		InputStream in = null;
 		// 读取excel模板，同时一个新Excel
 		XSSFWorkbook wb = null;
 		//XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(in);
 		OutputStream output = response.getOutputStream();
 		try {
+
 		// 判断模板的sheet是否大于Cav的数量。
 			in = new FileInputStream(fi);
 			wb = new XSSFWorkbook(in);
@@ -510,10 +515,9 @@ public class LkTrendChart {
 }finally {
 	request.getSession().setAttribute("endflag", "1");//设置结束标记
 	//request.getSession().setAttribute("endflag", "E");//设置结束标记
-	if(in!=null) {
-		in.close();
-		}
-	wb.close();
+	if(in!=null) in.close();
+	if(wb!=null) wb.close();
+	
 	output.flush();
 	output.close();
 	System.gc();
