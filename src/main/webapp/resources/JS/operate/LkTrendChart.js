@@ -1,11 +1,11 @@
 $(document).ready(function(){
-	 var sd=new Date();
+/*	 var sd=new Date();
 	 var sy=sd.getFullYear();
 	 var sm = sd.getMonth()+1;
      if (sm >= 1 && sm <= 9) {
          sm = "0" + sm;
      }
-	$('#id-TimeValue').val(sy+"-"+sm);
+	$('#id-TimeValue').val(sy+"-"+sm);*/
 	var tempListMap;
 	//打開網頁就去後台查詢所有料號。
 	$.ajax({
@@ -130,8 +130,26 @@ $(document).ready(function(){
 		}) */
 		
 	});
+		$("#id-query").click(function(){
+			var varPartNO=$('#id-PartNO').val();
+			var varData=$('#id-Data').val();
+			var varMoldNO=$('#id-MoldNO').val();
+			var varMOLD_CAVITY_QTY=$('#id-CavQty').val();
+			var varMOLD_CAVITY_NO=$('#id-CavNO').val();
+			console.log($('#id-TimeValue').val());
+			var varYearMonth=$('#id-TimeValue').val().replace(/-/g,'');
+			console.log(varYearMonth);
+			var varYearMonth2=$('#id-TimeValue2').val().replace(/-/g,'');
+			if(varYearMonth2==''||varMOLD_CAVITY_NO==null||varPartNO==null||varMoldNO==null||varMOLD_CAVITY_QTY==null||varYearMonth==''||varMoldNO=='undefined'||varMOLD_CAVITY_QTY=='undefined'){
+				 alert("不能為空"); 
+				return false;
+			}
+			addTab1(varMoldNO+'_'+varMOLD_CAVITY_NO,"LkTrendChart/LKWebChart?varPartNO="+varPartNO+"&varData="+varData+"&varMoldNO="+varMoldNO+"&varMOLD_CAVITY_NO="+varMOLD_CAVITY_NO+"&varYearMonth="+varYearMonth+"&varYearMonth2="+varYearMonth2+"&varMOLD_CAVITY_QTY="+varMOLD_CAVITY_QTY)
+			//window.location.href="LKWebChart?varPartNO="+varPartNO+"&varMoldNO="+varMoldNO+"&varMOLD_CAVITY_QTY="+varMOLD_CAVITY_QTY+"&varMOLD_CAVITY_NO"+varMOLD_CAVITY_NO+"&varYearMonth="+varYearMonth+"&varYearMonth2="+varYearMonth2;
+		});
+		
 	
-	$("#id-query").click(function(){
+	$("#id-query1").click(function(){
 		var varPartNO=$('#id-PartNO').val();
 		var varMoldNO=$('#id-MoldNO').val();
 		var varMOLD_CAVITY_QTY=$('#id-CavQty').val();
@@ -236,28 +254,34 @@ $(document).ready(function(){
 })
         function listenEnd() {//定时监听             
             var loop = setInterval(function() {
-                if ($("#txtendflag").val() == "1") {
+            	var vflag=$("#txtendflag").val();
+                if ($("#txtendflag").val() != "") {
                     clearInterval(loop);//停止定时任务
                     $('#ajaxLoader').hide();//关闭等待
                     $("#id-query2").attr('disabled',false);//啟用按鈕
+                    if(vflag!='OK'){
+                      alert(vflag);
+                    }
                 } else {
                     getendflag();                 
                 }
-            }, 3000);//单位毫秒  注意：如果导出页面很慢时，建议循环时间段稍长一点
+            }, 2000);//单位毫秒  注意：如果导出页面很慢时，建议循环时间段稍长一点
         }
 function getendflag() {//请求session标记位             
     $.ajax({
               type : 'post',
               url : '../LkTrendChart/getendflag',
-              dataType : 'json',
-              success : function(data) {    
-                  $("#txtendflag").val(data);        
+              success : function(data) { 
+            	  console.log(data);
+                  $("#txtendflag").val(data);                  
               },
               error : function(error) {
+            	  alert("查询状态标记错误。");
                   console.log('接口不通' + error);
               }
           })  
 }
+
 
 	function check(){
 	$('#form').contents().find("body").empty();//先清空iframe中的內容。
@@ -266,9 +290,10 @@ function getendflag() {//请求session标记位
 		var varMOLD_CAVITY_QTY=$('#id-CavQty').val();
 		var varMOLD_CAVITY_NO=$('#id-CavNO').val();
 		var varYearMonth=$('#id-TimeValue').val().replace('-','');
-		if(varMOLD_CAVITY_NO==null||varPartNO==null||varMoldNO==null||varMOLD_CAVITY_QTY==null||varYearMonth==null||varMoldNO=='undefined'||varMOLD_CAVITY_QTY=='undefined'){
+		var varYearMonth2=$('#id-TimeValue2').val().replace('-','');
+		if(varYearMonth2==''||varMOLD_CAVITY_NO==null||varPartNO==null||varMoldNO==null||varMOLD_CAVITY_QTY==null||varYearMonth==''||varMoldNO=='undefined'||varMOLD_CAVITY_QTY=='undefined'){
 			 alert("不能為空"); 
-			return;
+			return false;
 		}
 		 $('#ajaxLoader').show();//顯示等待進度條
 		 $('#id-query2').attr("disabled",true);//禁用按鈕  
@@ -300,6 +325,31 @@ function getendflag() {//请求session标记位
     	 var test=$(this).contents().find("body").text();   	 
     	 alert(test);
      });*/
-     
+		 
     
 }
+	function createIframe(url){
+		var s = '<iframe id="iframe11" scrolling="auto" frameborder="0"  src="' + url
+				+ '" style="width:100%;height:100%;overflow:auto;"></iframe>';
+		return s;
+	}
+	function addTab1(subtitle, url) {
+		//$().tabs('exists',XXX)判断是否存在选项卡
+		var jq = top.jQuery;
+		if (!jq('#tabs').tabs('exists', subtitle)) {
+
+			jq('#tabs').tabs('add', {
+
+				title : subtitle,
+				content : createIframe(url),
+				closable : true,
+//				collapsible: false,
+
+			});
+
+		} else {
+
+			jq('#tabs').tabs('select', subtitle);
+
+		}
+	}
