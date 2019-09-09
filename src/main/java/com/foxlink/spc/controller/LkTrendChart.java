@@ -8,11 +8,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,6 +29,18 @@ import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.plaf.synth.Region;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.annotations.Case;
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.apache.log4j.Logger;
@@ -111,6 +127,76 @@ public class LkTrendChart {
 	@RequestMapping(value = "/LKWebChart", method = RequestMethod.GET)
 	public String LKWebChart() {
 		return "LKWebChart";
+	}
+	@RequestMapping(value = "/LKxbar", method = RequestMethod.GET)
+	public String LKxbar() {
+		return "LKxbar";
+	}
+	@RequestMapping("/getXbarData")
+	@ResponseBody
+	public String getXbarData() {
+		//String strURL="http://127.0.0.1:5000/apis_spc_v2/?data=6.64,6.64,6.65,6.63,6.65,6.65,6.64,1";
+		String strURL="http://127.0.0.1:5000/apis_spc_v2/?data=6.64,6.64,6.65,6.63,6.65,6.65,6.64,6.63,6.62,6.61,6.64,6.64,6.62,6.64,6.61,6.62,6.63,6.64,6.63,6.64,6.63,6.64,6.65,6.63,6.63,6.51,6.52,6.51,6.54,6.52";
+		return get(strURL);
+	}
+	/**
+     * get请求，参数拼接在地址上
+     * @param url 请求地址加参数
+     * @return 响应
+     */
+    public String get(String url)
+    {
+        String result = null;
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+        CloseableHttpResponse response = null;
+        try {
+            response = httpClient.execute(get);
+            if(response != null && response.getStatusLine().getStatusCode() == 200)
+            {
+                HttpEntity entity = response.getEntity();
+                result = EntityUtils.toString(entity,"UTF-8");
+            }
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                httpClient.close();
+                if(response != null)
+                {
+                    response.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+	public String ApiJson(String url,String par) {
+		HttpPost httpPost=new HttpPost(url);
+		CloseableHttpClient client=HttpClients.createDefault();// 创建httpClient对象
+		String respContent=null;
+		
+		StringEntity entity=new StringEntity(par,"utf-8");
+		entity.setContentEncoding("UTF-8");
+		entity.setContentType("application/json");
+		httpPost.setEntity(entity);
+		
+		try {
+			HttpResponse resp=client.execute(httpPost);
+			if(resp.getStatusLine().getStatusCode()==200) {
+				HttpEntity he=resp.getEntity();
+				respContent=EntityUtils.toString(he,"UTF-8");
+			}
+		}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+
+		
+		return respContent;
 	}
 
 	@RequestMapping("/getPartData")
@@ -304,15 +390,24 @@ public class LkTrendChart {
 				levelmap.put("MOLD_CAVITY_NO", listMap.get(0).get("MOLD_CAVITY_NO").toString());
 				levelmap.put("SIZE_SN", o);// 標準值
 
+				Double STANDARD_VALUE=0.0;
+				Double UPPER_SPEC_LIMIT=0.0;
+				Double LOWER_SPEC_LIMIT =0.0;
+				Double UPPER_TOLERANCE =0.0;
+				Double LOWER_TOLERANCE=0.0;
 				for (Map<String, Object> m : listMap) {
 					String tempSize = m.get("SIZE_SN").toString();
 					if (o.equals(tempSize)) {
-						Double strSTANDARD_VALUE = Double.parseDouble(m.get("STANDARD_VALUE").toString());
-						Double strUPPER_SPEC_LIMIT = Double.parseDouble(m.get("UPPER_SPEC_LIMIT").toString());
-						Double LOWER_SPEC_LIMIT = Double.parseDouble(m.get("LOWER_SPEC_LIMIT").toString());
-						levelmap.put("STANDARD_VALUE", strSTANDARD_VALUE);// 標準值
-						levelmap.put("UPPER_SPEC_LIMIT", strUPPER_SPEC_LIMIT);// 規格上限
+						 STANDARD_VALUE = Double.parseDouble(m.get("STANDARD_VALUE").toString());
+						 UPPER_SPEC_LIMIT = Double.parseDouble(m.get("UPPER_SPEC_LIMIT").toString());
+						 LOWER_SPEC_LIMIT = Double.parseDouble(m.get("LOWER_SPEC_LIMIT").toString());
+						 UPPER_TOLERANCE = Double.parseDouble(m.get("UPPER_TOLERANCE").toString());
+						 LOWER_TOLERANCE = Double.parseDouble(m.get("LOWER_TOLERANCE").toString());
+						levelmap.put("STANDARD_VALUE", STANDARD_VALUE);// 標準值
+						levelmap.put("UPPER_SPEC_LIMIT", UPPER_SPEC_LIMIT);// 規格上限
 						levelmap.put("LOWER_SPEC_LIMIT", LOWER_SPEC_LIMIT);// 規格下限
+						levelmap.put("UPPER_TOLERANCE", UPPER_TOLERANCE);// 正公差
+						levelmap.put("LOWER_TOLERANCE", LOWER_TOLERANCE);// 負公差
 						// 对所有Measured Data测量数据填充。
 						String[] strsT1 = m.get("MOLD_CAVITY_M_DATA_T1").toString().split(";", -1);
 						String[] strsT2 = m.get("MOLD_CAVITY_M_DATA_T2").toString().split(";", -1);
@@ -325,33 +420,79 @@ public class LkTrendChart {
 
 						if (!strsT1[j].isEmpty()) {
 							Double double1=Double.parseDouble(strsT1[j]);
-							if(double1>strUPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
+							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_8" + strDayPeopre);
 						}
 						if (!strsT2[j].isEmpty()) {
 							Double double1=Double.parseDouble(strsT2[j]);
-							if(double1>strUPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
+							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_14" + strDayPeopre);
 						}
 						if (!strsT3[j].isEmpty()) {
 							Double double1=Double.parseDouble(strsT3[j]);
-							if(double1>strUPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
+							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_20" + strShiftPeopre);
 						}
 						if (!strsT4[j].isEmpty()) {
 							Double double1=Double.parseDouble(strsT4[j]);
-							if(double1>strUPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
+							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_8" + strShiftPeopre);
 						}
 
 					}
 				}
+				Double dbAVERAGE=Double.parseDouble(dStdDev(list_xData).get("AVERAGE"));				
+				String StrSTDEV=dStdDev(list_xData).get("STDEV");
+				if (StrSTDEV.isEmpty()) {
+					levelmap.put("STDEV", "");
+					levelmap.put("CP", "");
+					levelmap.put("UCPK", "");
+					levelmap.put("LCPK", "");
+					levelmap.put("CPK", "");
+				} else if (StrSTDEV.equals("0")) {
+					levelmap.put("STDEV", "0");
+					levelmap.put("CP", "");
+					levelmap.put("UCPK", "");
+					levelmap.put("LCPK", "");
+					levelmap.put("CPK", "");
+				} else {
+					Double dbSTDEV = Double.parseDouble(StrSTDEV);
+					BigDecimal bgUCPK = new BigDecimal((UPPER_SPEC_LIMIT - dbAVERAGE) / (3 * dbSTDEV)).setScale(3,
+							RoundingMode.HALF_UP);
+					Double dbUCPK = bgUCPK.doubleValue();
+					;
+					BigDecimal bgLCPK = new BigDecimal((dbAVERAGE - LOWER_SPEC_LIMIT) / (3 * dbSTDEV)).setScale(3,
+							RoundingMode.HALF_UP);
+					Double dbLCPK = bgLCPK.doubleValue();
+					Double dbCPK = 0.0;
+					Double dbCP = 0.0;
+					if (STANDARD_VALUE == 0 && LOWER_TOLERANCE == 0) {
+						BigDecimal bgCPK = new BigDecimal((UPPER_TOLERANCE - dbAVERAGE) / (3 * dbSTDEV)).setScale(3,
+								RoundingMode.HALF_UP);
+						dbCPK = bgCPK.doubleValue();
+						dbCP = dbUCPK;
+					} else {
+						dbCPK = dbUCPK > dbLCPK ? dbLCPK : dbUCPK;
+						BigDecimal bgCP = new BigDecimal((UPPER_TOLERANCE + Math.abs(LOWER_TOLERANCE)) / (6 * dbSTDEV))
+								.setScale(3, RoundingMode.HALF_UP);
+						dbCP = bgCP.doubleValue();
+					}
+					levelmap.put("CP", dbCP);
+					levelmap.put("UCPK", dbUCPK);
+					levelmap.put("LCPK", dbLCPK);
+					levelmap.put("CPK", dbCPK);
+					levelmap.put("STDEV", dbSTDEV);
+				}
+				levelmap.put("MAX", Collections.max(list_xData));
+				levelmap.put("MIN", Collections.min(list_xData));
+				levelmap.put("AVERAGE",dbAVERAGE );
 				levelmap.put("sData", list_sData);
 				levelmap.put("xData", list_xData);
+				if(list_xData.size()==0) continue;
 				if(bError) {//有错误，则加入ttmapsError中
 					ttmapsError.add(levelmap);
 				}
@@ -362,13 +503,51 @@ public class LkTrendChart {
 			
 		}
 		System.out.println(ttmaps);
-		if(varData.equals("all")) {
+		if(varData.equals("ALL")) {
 			return ttmaps;
 		}else {
 			return ttmapsError;
 		}
 		
 	}
+
+	 /**
+	    * 只遍历数组一次求总体标准差
+	    * @param sample doube数组
+	    * @return
+	    */  
+	    private Map<String, String> dStdDev(List<Double> listdb) {
+	    	System.out.println(listdb);
+	    	Map<String, String> map = new HashMap<String, String>();
+	    	Double[] sample=listdb.toArray(new Double[listdb.size()]);
+	    	
+	        Double dSum = 0.0; // 样本值之和
+	        Double dAverage = 0.0; // 样本值的平均值
+	        // 遍历样本
+	        for (int i = 0; i < sample.length; ++i) {
+	            dSum += sample[i];
+	        }
+	        dAverage = dSum / sample.length;
+	        // 新方法，如果不需要四舍五入，可以使用RoundingMode.DOWN
+	        BigDecimal bg = new BigDecimal(dAverage).setScale(3, RoundingMode.HALF_UP);//保留三位小數，四捨五入
+	        dAverage=bg.doubleValue();
+	        map.put("AVERAGE", dAverage.toString());
+	        
+	        if (1 >= sample.length) {
+	        	map.put("STDEV", "");//如果数组为0或者为1，不用继续往下运算了，因为后面sample.length-1要单做被除数。
+	            return map;
+	        }
+	        // 遍历样本数字
+	        dSum = 0.0;
+	        for (int i = 0; i < sample.length; ++i) {
+	            dSum += (sample[i] - dAverage) * (sample[i] - dAverage);
+	        }
+	        Double dStdDev = Math.sqrt(dSum / (sample.length-1));
+	        BigDecimal bg2 = new BigDecimal(dStdDev).setScale(3, RoundingMode.HALF_UP);
+	        dStdDev=bg2.doubleValue();
+	        map.put("STDEV", dStdDev.toString() );
+	        return map;
+	    }
 	
 	@RequestMapping("/test")
 	@ResponseBody
