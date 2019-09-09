@@ -188,6 +188,15 @@ var _menus ={
 		"menus_s":[{
 			
 		}]
+	},{
+		"menuid":"22",
+		"controll":"",
+		"rel":"LkTrendChart/LKxbar",
+		"menuname":"x-bar",
+		"icon":"glyphicon glyphicon-globe",
+		"menus_s":[{
+			
+		}]
 	}
 	]
 //	},{

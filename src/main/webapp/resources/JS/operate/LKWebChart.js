@@ -1,7 +1,7 @@
 $(document).ready(function(){
-
+	var varSubtitle=$('#varMoldNO').val()+'_'+$('#varMOLD_CAVITY_NO').val()+'_'+$('#varData').val();
 	var jq = top.jQuery;
-	var varUrl= jq('#iframe11').attr("src");
+	var varUrl= jq('#'+varSubtitle).attr("src");
 	varUrl=varUrl.replace('LKWebChart','getData');
 	varUrl="../"+varUrl;
 	$.ajax({
@@ -14,16 +14,7 @@ $(document).ready(function(){
 				return;
 			}else{
 				$.each(data,function(i,result){
-					console.log(result);
-					$("<div />",{
-						id : "main"+i,
-						name : "main"+i,
-						height : 300,
-						click : function() {
-							console.log("div");
-						}
-					}).appendTo($("body"));
-					
+					console.log(result);					
 					//console.log(result['SIZE_SN']);
 					creatChart(i,result);
 				});
@@ -38,6 +29,63 @@ $(document).ready(function(){
 })
 
 function creatChart(i,result){
+	//$('body').append("<table border='1' cellspacing='0' style='margin:auto;'> <tr><th>No.</th><th>Nominal</th><th>+TOL</th><th>-TOL</th><th>USL</th><th>LSL</th><th>Max</th><th>Min</th><th>Std Dev</th><th>Mean</th><th>Cp</th><th>UCPK</th><th>LCPK</th><th>Cpk</th></tr><tr><td id='SIZE_SN"+i+"'></td><td id='STANDARD_VALUE"+i+"'></td><td id='UPPER_TOLERANCE"+i+"'></td><td id='LOWER_TOLERANCE"+i+"'></td><td id='UPPER_SPEC_LIMIT"+i+"'></td><td id='LOWER_SPEC_LIMIT"+i+"'></td><td id='MAX"+i+"'></td><td id='MIN"+i+"'></td><td id='STDEV"+i+"'></td><td id='AVERAGE"+i+"'></td><td id='CP"+i+"'></td><td id='UCPK"+i+"'></td><td id='LCPK"+i+"'></td><td id='CPK"+i+"'></td></tr></table>");
+	$('body').append("  <div >\
+      <div style=\"width:8%;float:left;\"><table >\
+        <tr>\
+          <td>\
+          	<table class='tabledata'> \
+		     <tr><td>No.</td><td id='SIZE_SN"+i+"'></td></tr>\
+		     <tr><td>Nominal</td><td id='STANDARD_VALUE"+i+"'></td></tr>\
+		     <tr><td>+TOL</td> <td id='UPPER_TOLERANCE"+i+"'>0.080</td></tr>\
+		     <tr><td>-TOL</td><td id='LOWER_TOLERANCE"+i+"'></td> </tr>\
+		     <tr><td>USL</td><td id='UPPER_SPEC_LIMIT"+i+"'></td> </tr>\
+		     <tr><td>LSL</td><td id='LOWER_SPEC_LIMIT"+i+"'></td> </tr>\
+		     <tr><td id='MAXX"+i+"'>Max</td><td id='MAX"+i+"'></td> </tr>\
+		     <tr><td id='MINN"+i+"'>Min</td> <td id='MIN"+i+"'></td></tr>\
+		     <tr><td>Std Dev</td><td id='STDEV"+i+"'></td> </tr>\
+		     <tr><td>Mean</td><td id='AVERAGE"+i+"'></td> </tr>\
+		     <tr><td>Cp</td><td id='CP"+i+"'></td> </tr>\
+		     <tr><td>UCPK</td><td id='UCPK"+i+"'></td> </tr>\
+		     <tr><td>LCPK</td><td id='LCPK"+i+"'></td></tr>\
+		     <tr><td>Cpk</td><td id='CPK"+i+"'></td></tr>\
+		     </table></td>\
+		    <td</td>\
+        </tr>\
+      </table></div>\
+      <div  id='main"+i+"' style=\"height:300px;width:92%;float:left;\" ></div>\
+  </div>");
+	$("#SIZE_SN"+i).text(result['SIZE_SN']);
+	$("#STANDARD_VALUE"+i).text(result['STANDARD_VALUE']);
+	$("#UPPER_TOLERANCE"+i).text(result['UPPER_TOLERANCE']);
+	$("#LOWER_TOLERANCE"+i).text(result['LOWER_TOLERANCE']);
+	$("#UPPER_SPEC_LIMIT"+i).text(result['UPPER_SPEC_LIMIT']);
+	$("#LOWER_SPEC_LIMIT"+i).text(result['LOWER_SPEC_LIMIT']);
+	$("#MAX"+i).text(result['MAX']);
+	$("#MIN"+i).text(result['MIN']);
+	$("#STDEV"+i).text(result['STDEV']);
+	$("#AVERAGE"+i).text(result['AVERAGE']);
+	$("#CP"+i).text(result['CP']);
+	$("#UCPK"+i).text(result['UCPK']);
+	$("#LCPK"+i).text(result['LCPK']);
+	$("#CPK"+i).text(result['CPK']);
+	if(result['MAX']>result['UPPER_SPEC_LIMIT']){
+		$("#MAX"+i).css({"color":"#ff0000","font-weight":"bold"});
+		$("#MAXX"+i).css({"color":"#ff0000","font-weight":"bold"});
+	}
+	if(result['MIN']<result['LOWER_SPEC_LIMIT']){
+		$("#MIN"+i).css({"color":"#ff0000","font-weight":"bold"});
+		$("#MINN"+i).css({"color":"#ff0000","font-weight":"bold"});
+	}
+	
+/*	$("<div />",{
+		id : "main"+i,
+		name : "main"+i,
+		height : 300,
+		click : function() {
+			console.log("div");
+		}
+	}).appendTo($("body"));*/
 	var myChart = echarts.init(document.getElementById('main'+i));
 	var markArr = [], temObj = null;
 	result['xData'].forEach(function(v, i) {
@@ -96,8 +144,9 @@ function creatChart(i,result){
     	            //splitLine: {show: false}
     	        }
     	    ],    grid: {
-    	         left: '8%',//因旋转导致名字太长的类目造成遮蔽，可以配合这两个属性
-    	         bottom:'20%'// 分别表示：距离左边距和底部的距离，具体数值按实际情况调整
+    	         left: '35',//因旋转导致名字太长的类目造成遮蔽，可以配合这两个属性
+    	         bottom:'20%',// 分别表示：距离左边距和底部的距离，具体数值按实际情况调整
+    	         containLabel: true
     	    },
     	    dataZoom:{
     	        realtime:true, //拖动滚动条时是否动态的更新图表数据
@@ -160,6 +209,12 @@ function creatChart(i,result){
     	            	data:markArr
     	            }, 
     	            markLine : {
+    	                label:{//显示文本。b就是data的name，c就是yAxis的值
+    	                    show:true,
+    	                    position:'end',
+    	                    formatter: '     {b}: {c}'
+    	                    
+    	                },
     	                data : [{
     	                	name:'USL',
     	                	yAxis: result['UPPER_SPEC_LIMIT'],

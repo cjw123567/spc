@@ -144,7 +144,7 @@ $(document).ready(function(){
 				 alert("不能為空"); 
 				return false;
 			}
-			addTab1(varMoldNO+'_'+varMOLD_CAVITY_NO,"LkTrendChart/LKWebChart?varPartNO="+varPartNO+"&varData="+varData+"&varMoldNO="+varMoldNO+"&varMOLD_CAVITY_NO="+varMOLD_CAVITY_NO+"&varYearMonth="+varYearMonth+"&varYearMonth2="+varYearMonth2+"&varMOLD_CAVITY_QTY="+varMOLD_CAVITY_QTY)
+			addTab1(varMoldNO+'_'+varMOLD_CAVITY_NO+'_'+varData,"LkTrendChart/LKWebChart?varPartNO="+varPartNO+"&varData="+varData+"&varMoldNO="+varMoldNO+"&varMOLD_CAVITY_NO="+varMOLD_CAVITY_NO+"&varYearMonth="+varYearMonth+"&varYearMonth2="+varYearMonth2+"&varMOLD_CAVITY_QTY="+varMOLD_CAVITY_QTY)
 			//window.location.href="LKWebChart?varPartNO="+varPartNO+"&varMoldNO="+varMoldNO+"&varMOLD_CAVITY_QTY="+varMOLD_CAVITY_QTY+"&varMOLD_CAVITY_NO"+varMOLD_CAVITY_NO+"&varYearMonth="+varYearMonth+"&varYearMonth2="+varYearMonth2;
 		});
 		
@@ -328,8 +328,8 @@ function getendflag() {//请求session标记位
 		 
     
 }
-	function createIframe(url){
-		var s = '<iframe id="iframe11" scrolling="auto" frameborder="0"  src="' + url
+	function createIframe(subtitle,url){
+		var s = '<iframe id="'+subtitle+'" scrolling="auto" frameborder="0"  src="' + url
 				+ '" style="width:100%;height:100%;overflow:auto;"></iframe>';
 		return s;
 	}
@@ -341,7 +341,7 @@ function getendflag() {//请求session标记位
 			jq('#tabs').tabs('add', {
 
 				title : subtitle,
-				content : createIframe(url),
+				content : createIframe(subtitle,url),
 				closable : true,
 //				collapsible: false,
 

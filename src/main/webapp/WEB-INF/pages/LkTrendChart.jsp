@@ -84,8 +84,8 @@
 		  <td align="right">Data:</td>
 		    <td >		  
 		     <select id="id-Data" name="id-Data" style="width:150px" class="form-control input-sm">
-				<option value ="all">全部的數據</option>
-				<option value ="abnormal">超上下限數據</option>
+				<option value ="ALL">全部的數據</option>
+				<option value ="AB">超上下限數據</option>
 			 </select>
 			</td>
 		   <td></td>
