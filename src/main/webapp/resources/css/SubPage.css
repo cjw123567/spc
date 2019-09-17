@@ -66,6 +66,13 @@ html,body{
     padding-right: 15px;
     float:left;
 }
+.file-time{
+	position: relative;
+    min-height: 1px;
+    padding-left: 0px;
+    padding-right: 15px;
+    float:left;
+}
 .file-text{
 	display:inline-block;
 	width:73%;
