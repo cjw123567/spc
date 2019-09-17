@@ -197,6 +197,15 @@ var _menus ={
 		"menus_s":[{
 			
 		}]
+	},{
+		"menuid":"23",
+		"controll":"",
+		"rel":"SelectSPCData/ShowSelectSPCData",
+		"menuname":"檔案查詢",
+		"icon":"glyphicon glyphicon-globe",
+		"menus_s":[{
+			
+		}]
 	}
 	]
 //	},{
