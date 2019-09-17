@@ -374,6 +374,7 @@ public class LkTrendChart {
 		int iCavSum = Integer.parseInt(listMap.get(0).get("MOLD_CAVITY_QTY").toString());
 		List<Map> ttmaps=new ArrayList<>();
 		List<Map> ttmapsError=new ArrayList<>();
+	try {
 		for (int j = 0; j < iCavSum; j++) {// 循环穴位
 			for (String o : setSize) {
 
@@ -418,25 +419,26 @@ public class LkTrendChart {
 						String strShiftPeopre = StringUtils.isEmpty(m.get("NIGHT_SHIT_PERSONNEL")) ? ""
 								: m.get("NIGHT_SHIT_PERSONNEL").toString();// 夜班人员
 
-						if (!strsT1[j].isEmpty()) {
+						if (!strsT1[j].isEmpty()&&strsT1[j].trim().length()!=0) {
 							Double double1=Double.parseDouble(strsT1[j]);
 							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_8" + strDayPeopre);
 						}
-						if (!strsT2[j].isEmpty()) {
+						if (!strsT2[j].isEmpty()&&strsT2[j].trim().length()!=0) {
+							System.out.println(strsT2[j]);
 							Double double1=Double.parseDouble(strsT2[j]);
 							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_14" + strDayPeopre);
 						}
-						if (!strsT3[j].isEmpty()) {
+						if (!strsT3[j].isEmpty()&&strsT3[j].trim().length()!=0) {
 							Double double1=Double.parseDouble(strsT3[j]);
 							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
 							list_sData.add(m.get("measure_date").toString().substring(4) + "_20" + strShiftPeopre);
 						}
-						if (!strsT4[j].isEmpty()) {
+						if (!strsT4[j].isEmpty()&&strsT4[j].trim().length()!=0) {
 							Double double1=Double.parseDouble(strsT4[j]);
 							if(double1>UPPER_SPEC_LIMIT||double1<LOWER_SPEC_LIMIT) bError=true;
 							list_xData.add(double1);
@@ -502,6 +504,10 @@ public class LkTrendChart {
 			//tts.put("Cav"+j, levelmap);
 			
 		}
+	} catch (Exception e) {
+		// TODO: handle exception
+		logger.info(e);
+	}
 		System.out.println(ttmaps);
 		if(varData.equals("ALL")) {
 			return ttmaps;
