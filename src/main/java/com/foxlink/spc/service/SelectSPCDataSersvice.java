@@ -25,10 +25,10 @@ public class SelectSPCDataSersvice {
 		this.selectSPCDataDao = selectSPCDataDao;
 	}
 
-	public String ShowDataName(String part_No, String start, String end) {
+	public String ShowDataName(String doc_No,String part_No, String start, String end) {
 		// TODO Auto-generated method stub
 		JsonObject result = new JsonObject();
-		List<SelectSPCData>SpecList = selectSPCDataDao.ShowDataName(part_No,start,end);
+		List<SelectSPCData>SpecList = selectSPCDataDao.ShowDataName(doc_No,part_No,start,end);
 		//System.out.println("專案號"+strProNumber2V);
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		if(SpecList.size()==0||SpecList==null) {

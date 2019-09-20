@@ -5,10 +5,14 @@ $(function(){
 	//showCTPSpec();
 /*	showSPCDataName(); */
 	$('#SPCData_Select').click(function(){
-		var Part_No=null,Start=null,End=null;
-		var partNo=$("#fileName").val();
+		var Doc_No=null,Part_No=null,Start=null,End=null;
+		var doc_no = $("#fileName").val();
+		var partNo=$("#partNo").val();
 		var timeFirst = $("#start").val();
 		var timeSecond = $("#end").val();
+		if(doc_no!=null&&doc_no!=""){
+			Doc_No = doc_no;
+		}
 		if(partNo!=null&&partNo!=""){
 			 Part_No = partNo;
 		}
@@ -16,18 +20,19 @@ $(function(){
 			Start=timeFirst;
 			End=timeSecond;
 		}else if((timeFirst!=null&&timeFirst!="")||(timeSecond!=null&&timeSecond!="")){
-			alert('起始時間和結束時間不能爲空!');
+			alert('量測起始時間和量測結束時間不能爲空!');
 			return;
 		}	
-		showSPCDataName(Part_No,Start,End);				
+		showSPCDataName(Doc_No,Part_No,Start,End);				
 	});
 	
-	function showSPCDataName(Part_No,Start,End) {
+	function showSPCDataName(Doc_No,Part_No,Start,End) {
 		$.ajax({
 			url:"../SelectSPCData/ShowSPCDataName",
 			type:"POST",
 			async : false,
 			data:{
+				"Doc_No":Doc_No,
 				"Part_No":Part_No,
 				"Start":Start,
 				"End":End

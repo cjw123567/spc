@@ -40,12 +40,14 @@ public class SelectSPCDataDao {
 		
 	}
 
-	public List<SelectSPCData> ShowDataName(String part_No, String start, String end) {
+	public List<SelectSPCData> ShowDataName(String doc_No,String part_No, String start, String end) {
 		// TODO Auto-generated method stub
 		String strSQL = "SELECT DISTINCT(Doc_No),Measure_Date from SPC.PRODUCT_SIZE_MEASURE_RECORD where 1=1";
 		List<SelectSPCData> SpecList = new ArrayList<>();
 		try {
-			
+			if(doc_No!=null&&doc_No!=""){
+    			strSQL+=" and Doc_No like'"+doc_No+"%'";  
+			}
     		if(part_No!=null&&part_No!=""){
     			strSQL+=" and Part_No ='"+part_No+"'";  
 			}
