@@ -58,7 +58,7 @@ function creatChart(result){
 	        temObj = {value: v,xAxis: i,yAxis: v,
 	            itemStyle: {  color: '#FF0B00' }
 	        };
-	        coordObj0={coord:[i,(result['lcl']-3.5).toFixed(3)],
+	        coordObj0={coord:[i,(result['lcl']-0.1).toFixed(3)],
         		valueIndex: 0,
         		symbol:'none',
                 lineStyle: {  color: '#FF0000'},
@@ -130,11 +130,12 @@ function creatChart(result){
     	        {
     	            type : 'value',
     	            splitLine:{show:false},
+    	            scale: true,
     	            boundaryGap:[1,1],
     	            //interval: 5,
     	            splitNumber : 6,
-    	            min:(result['lcl']-3.5).toFixed(3),
-    	            max:(result['ucl']+4.5).toFixed(3)
+    	            min:(result['lcl']-0.1).toFixed(3),
+    	            max:(result['ucl']+0.1).toFixed(3)
     	            
 
     	        }
