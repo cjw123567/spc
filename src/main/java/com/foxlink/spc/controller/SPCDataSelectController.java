@@ -29,11 +29,11 @@ public class SPCDataSelectController {
 	
 	@RequestMapping(value="/ShowSPCDataName",method=RequestMethod.POST,produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String ShowSPCDataName(@RequestParam(value="Part_No")String Part_No,@RequestParam(value="Start")String Start,@RequestParam(value="End")String End){
+	public String ShowSPCDataName(@RequestParam(value="Doc_No")String Doc_No,@RequestParam(value="Part_No")String Part_No,@RequestParam(value="Start")String Start,@RequestParam(value="End")String End){
 		selectSPCDataService = (SelectSPCDataSersvice) context.getBean("SelectSPCDataSersvice");
 		System.out.println(Part_No);
 		System.out.println(Start);
 		System.out.println(End);
-		return selectSPCDataService.ShowDataName(Part_No,Start,End);
+		return selectSPCDataService.ShowDataName(Doc_No,Part_No,Start,End);
 	}
 }

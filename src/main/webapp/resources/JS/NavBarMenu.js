@@ -188,7 +188,7 @@ var _menus ={
 		"menus_s":[{
 			
 		}]
-	},{
+	}/*,{
 		"menuid":"22",
 		"controll":"",
 		"rel":"LkTrendChart/LKxbar",
@@ -197,7 +197,7 @@ var _menus ={
 		"menus_s":[{
 			
 		}]
-	},{
+	}*/,{
 		"menuid":"23",
 		"controll":"",
 		"rel":"SelectSPCData/ShowSelectSPCData",

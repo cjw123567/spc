@@ -60,9 +60,10 @@ public class UploadSpcDataService {
 			Doc_No = fileName.substring(0, fileName.indexOf("."));
 			//Doc_No = fileName2.substring(0, fileName2.lastIndexOf("_"));
 			String filePath = "D:/ExcelBack/SPCData/"+fileName;// 存储到服务器上的路径.
-		
+			String errorFilePath = "D:/ExcelBack/SPCDataError/"+fileName;
 			int totalRecord = 0;
 			Workbook wb = null;
+			int num = 22;
 //			int x = 0;
 			try {
 				InputStream is = file[i].getInputStream();
@@ -77,10 +78,10 @@ public class UploadSpcDataService {
 
 				Sheet sheet = wb.getSheetAt(0); // 读取sheet(页) 这里选择第0页
 				Integer totoalRows = sheet.getLastRowNum(); // 获取总行数量
-				Row totalRows = sheet.getRow(2);
+				Row totalRows = sheet.getRow(1);
 				int totoalCells = totalRows.getLastCellNum();
-				System.out.println("一共多少列："+totoalCells);
-				//System.out.println("总行数量:"+totoalRows);     
+				System.out.println("总行数量:"+totoalRows);     
+				System.out.println("一共多少列："+totoalCells);				
 				Part_No=sheet.getRow(1).getCell(1).getStringCellValue();
 				Mold_Do=sheet.getRow(1).getCell(7).getStringCellValue();
 				Mold_Cavity_No=sheet.getRow(1).getCell(11).getStringCellValue();
@@ -99,19 +100,53 @@ public class UploadSpcDataService {
 				System.out.println("日期:"+Measure_Date);
 				System.out.println("白班人員:"+Day_Shift_Personnel);
 				System.out.println("夜班人員:"+Night_Shift_Personnel);*/
+				/*System.out.print(totoalCells);*/
 				int ratio= 6+(4*Integer.parseInt(Mold_Cavity_Qty));
-				if(totoalCells==(ratio)) {
-					//uploadSpcDataDao.SelectProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
-					if (uploadSpcDataDao.SelectProName(Doc_No)>0) {
-						//uploadSpcDataDao.DeleteProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
-						if (uploadSpcDataDao.DeleteProName(Doc_No)>0) {
-							
-								for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
-								Row row = sheet.getRow(rowIndex);// 获得当前行
+				if(Integer.parseInt(Mold_Cavity_Qty)>=4) {
+					if(totoalCells==ratio) {
+						//uploadSpcDataDao.SelectProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
+						if (uploadSpcDataDao.SelectProName(Doc_No)>0) {
+							//uploadSpcDataDao.DeleteProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
+							if (uploadSpcDataDao.DeleteProName(Doc_No)>0) {
 								
+									for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
+									Row row = sheet.getRow(rowIndex);// 获得当前行
+									
+									int law = Integer.parseInt(Mold_Cavity_Qty);
+									//System.out.println("穴数"+law);
+									
+									String Mold_Cavity_M_Data_T1="";
+									String Mold_Cavity_M_Data_T2="";
+									String Mold_Cavity_M_Data_T3="";
+									String Mold_Cavity_M_Data_T4="";
+									for(int j=0;j<law;j++) {
+										if(j==law-1) {
+											Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j));
+											Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1));
+											Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2));
+											Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3));
+										}else {
+											Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j))+";";
+											Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1))+";";
+											Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2))+";";
+											Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3))+";";
+										}				
+									}
+									Size_Sn=getCellValue(row.getCell(0));
+									Standard_Value=getCellValue(row.getCell(1));
+									Upper_Tolerance=getCellValue(row.getCell(2));
+									Lower_Tolerance=getCellValue(row.getCell(3));
+									Upper_Spec_Limit=up(getCellValue(row.getCell(1)),getCellValue(row.getCell(2)));
+									Lower_Spec_Limit=sub(getCellValue(row.getCell(1)),getCellValue(row.getCell(3)));
+									totalRecord+=uploadSpcDataDao.uploadOK(Doc_No,Part_No,Mold_Do,Mold_Cavity_No,Mold_Cavity_Qty,Machine_No,Measure_Date,Size_Sn,Standard_Value,Upper_Tolerance,Lower_Tolerance,Upper_Spec_Limit,Lower_Spec_Limit,Mold_Cavity_M_Data_T1,Mold_Cavity_M_Data_T2,Mold_Cavity_M_Data_T3,Mold_Cavity_M_Data_T4,APPROVAL_PERSONNEL,Day_Shift_Personnel,Night_Shift_Personnel,strUserName);
+								}
+							
+							}
+						}else {
+							for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
+								Row row = sheet.getRow(rowIndex);// 获得当前行	
 								int law = Integer.parseInt(Mold_Cavity_Qty);
 								//System.out.println("穴数"+law);
-								
 								String Mold_Cavity_M_Data_T1="";
 								String Mold_Cavity_M_Data_T2="";
 								String Mold_Cavity_M_Data_T3="";
@@ -136,64 +171,136 @@ public class UploadSpcDataService {
 								Upper_Spec_Limit=up(getCellValue(row.getCell(1)),getCellValue(row.getCell(2)));
 								Lower_Spec_Limit=sub(getCellValue(row.getCell(1)),getCellValue(row.getCell(3)));
 								totalRecord+=uploadSpcDataDao.uploadOK(Doc_No,Part_No,Mold_Do,Mold_Cavity_No,Mold_Cavity_Qty,Machine_No,Measure_Date,Size_Sn,Standard_Value,Upper_Tolerance,Lower_Tolerance,Upper_Spec_Limit,Lower_Spec_Limit,Mold_Cavity_M_Data_T1,Mold_Cavity_M_Data_T2,Mold_Cavity_M_Data_T3,Mold_Cavity_M_Data_T4,APPROVAL_PERSONNEL,Day_Shift_Personnel,Night_Shift_Personnel,strUserName);
+								
+								
 							}
-						
+							//if(totalRecord)
+							
+							//System.out.println(message);
 						}
+						
+						
+						
+						File targetFile = new File(filePath);
+						if (!targetFile.exists()) {
+							targetFile.mkdirs();
+						}
+						// 将前台传过来的file文件写到targetFile中.		
+						file[i].transferTo(targetFile);		
+						
+						
+						/*System.out.println("Rows:"+totoalRows);
+						System.out.println("Record:"+totalRecord);*/
+						
 					}else {
-						for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
-							Row row = sheet.getRow(rowIndex);// 获得当前行	
-							int law = Integer.parseInt(Mold_Cavity_Qty);
-							//System.out.println("穴数"+law);
-							String Mold_Cavity_M_Data_T1="";
-							String Mold_Cavity_M_Data_T2="";
-							String Mold_Cavity_M_Data_T3="";
-							String Mold_Cavity_M_Data_T4="";
-							for(int j=0;j<law;j++) {
-								if(j==law-1) {
-									Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j));
-									Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1));
-									Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2));
-									Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3));
-								}else {
-									Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j))+";";
-									Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1))+";";
-									Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2))+";";
-									Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3))+";";
-								}				
+						 message+=fileName+" 文檔有誤，請檢查文檔！";
+						 File targetFile = new File(errorFilePath);
+							if (!targetFile.exists()) {
+								targetFile.mkdirs();
 							}
-							Size_Sn=getCellValue(row.getCell(0));
-							Standard_Value=getCellValue(row.getCell(1));
-							Upper_Tolerance=getCellValue(row.getCell(2));
-							Lower_Tolerance=getCellValue(row.getCell(3));
-							Upper_Spec_Limit=up(getCellValue(row.getCell(1)),getCellValue(row.getCell(2)));
-							Lower_Spec_Limit=sub(getCellValue(row.getCell(1)),getCellValue(row.getCell(3)));
-							totalRecord+=uploadSpcDataDao.uploadOK(Doc_No,Part_No,Mold_Do,Mold_Cavity_No,Mold_Cavity_Qty,Machine_No,Measure_Date,Size_Sn,Standard_Value,Upper_Tolerance,Lower_Tolerance,Upper_Spec_Limit,Lower_Spec_Limit,Mold_Cavity_M_Data_T1,Mold_Cavity_M_Data_T2,Mold_Cavity_M_Data_T3,Mold_Cavity_M_Data_T4,APPROVAL_PERSONNEL,Day_Shift_Personnel,Night_Shift_Personnel,strUserName);
-							
-							
-						}
-						//if(totalRecord)
-						
-						//System.out.println(message);
-					}
-					
-					
-					
-					File targetFile = new File(filePath);
-					if (!targetFile.exists()) {
-						targetFile.mkdirs();
-					}
-					// 将前台传过来的file文件写到targetFile中.		
-					file[i].transferTo(targetFile);		
-					
-					
-					/*System.out.println("Rows:"+totoalRows);
-					System.out.println("Record:"+totalRecord);*/
-					
+							// 将前台传过来的file文件写到targetFile中.		
+						 file[i].transferTo(targetFile);		
+					}	
 				}else {
-					 message+="文檔有誤，請檢查文檔！";
-				}	
-			
-			
+					if(totoalCells==num) {
+						//uploadSpcDataDao.SelectProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
+						if (uploadSpcDataDao.SelectProName(Doc_No)>0) {
+							//uploadSpcDataDao.DeleteProName(Doc_No,Measure_Date,Part_No,Mold_Cavity_Qty,Mold_Cavity_No,Machine_No)
+							if (uploadSpcDataDao.DeleteProName(Doc_No)>0) {
+								
+									for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
+									Row row = sheet.getRow(rowIndex);// 获得当前行
+									
+									int law = Integer.parseInt(Mold_Cavity_Qty);
+									//System.out.println("穴数"+law);
+									
+									String Mold_Cavity_M_Data_T1="";
+									String Mold_Cavity_M_Data_T2="";
+									String Mold_Cavity_M_Data_T3="";
+									String Mold_Cavity_M_Data_T4="";
+									for(int j=0;j<law;j++) {
+										if(j==law-1) {
+											Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j));
+											Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1));
+											Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2));
+											Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3));
+										}else {
+											Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j))+";";
+											Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1))+";";
+											Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2))+";";
+											Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3))+";";
+										}				
+									}
+									Size_Sn=getCellValue(row.getCell(0));
+									Standard_Value=getCellValue(row.getCell(1));
+									Upper_Tolerance=getCellValue(row.getCell(2));
+									Lower_Tolerance=getCellValue(row.getCell(3));
+									Upper_Spec_Limit=up(getCellValue(row.getCell(1)),getCellValue(row.getCell(2)));
+									Lower_Spec_Limit=sub(getCellValue(row.getCell(1)),getCellValue(row.getCell(3)));
+									totalRecord+=uploadSpcDataDao.uploadOK(Doc_No,Part_No,Mold_Do,Mold_Cavity_No,Mold_Cavity_Qty,Machine_No,Measure_Date,Size_Sn,Standard_Value,Upper_Tolerance,Lower_Tolerance,Upper_Spec_Limit,Lower_Spec_Limit,Mold_Cavity_M_Data_T1,Mold_Cavity_M_Data_T2,Mold_Cavity_M_Data_T3,Mold_Cavity_M_Data_T4,APPROVAL_PERSONNEL,Day_Shift_Personnel,Night_Shift_Personnel,strUserName);
+								}
+							
+							}
+						}else {
+							for (int rowIndex = 4; rowIndex < totoalRows-4; rowIndex++) {
+								Row row = sheet.getRow(rowIndex);// 获得当前行	
+								int law = Integer.parseInt(Mold_Cavity_Qty);
+								//System.out.println("穴数"+law);
+								String Mold_Cavity_M_Data_T1="";
+								String Mold_Cavity_M_Data_T2="";
+								String Mold_Cavity_M_Data_T3="";
+								String Mold_Cavity_M_Data_T4="";
+								for(int j=0;j<law;j++) {
+									if(j==law-1) {
+										Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j));
+										Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1));
+										Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2));
+										Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3));
+									}else {
+										Mold_Cavity_M_Data_T1+=getCellValue(row.getCell(6+j))+";";
+										Mold_Cavity_M_Data_T2+=getCellValue(row.getCell(6+j+law*1))+";";
+										Mold_Cavity_M_Data_T3+=getCellValue(row.getCell(6+j+law*2))+";";
+										Mold_Cavity_M_Data_T4+=getCellValue(row.getCell(6+j+law*3))+";";
+									}				
+								}
+								Size_Sn=getCellValue(row.getCell(0));
+								Standard_Value=getCellValue(row.getCell(1));
+								Upper_Tolerance=getCellValue(row.getCell(2));
+								Lower_Tolerance=getCellValue(row.getCell(3));
+								Upper_Spec_Limit=up(getCellValue(row.getCell(1)),getCellValue(row.getCell(2)));
+								Lower_Spec_Limit=sub(getCellValue(row.getCell(1)),getCellValue(row.getCell(3)));
+								totalRecord+=uploadSpcDataDao.uploadOK(Doc_No,Part_No,Mold_Do,Mold_Cavity_No,Mold_Cavity_Qty,Machine_No,Measure_Date,Size_Sn,Standard_Value,Upper_Tolerance,Lower_Tolerance,Upper_Spec_Limit,Lower_Spec_Limit,Mold_Cavity_M_Data_T1,Mold_Cavity_M_Data_T2,Mold_Cavity_M_Data_T3,Mold_Cavity_M_Data_T4,APPROVAL_PERSONNEL,Day_Shift_Personnel,Night_Shift_Personnel,strUserName);
+								
+								
+							}
+							//if(totalRecord)
+							
+							//System.out.println(message);
+						}
+						
+						
+						
+						File targetFile = new File(filePath);
+						if (!targetFile.exists()) {
+							targetFile.mkdirs();
+						}
+						// 将前台传过来的file文件写到targetFile中.		
+						file[i].transferTo(targetFile);		
+						
+						
+						/*System.out.println("Rows:"+totoalRows);
+						System.out.println("Record:"+totalRecord);*/
+						
+					}else {
+						 message+=fileName+" 文檔有誤，請檢查文檔！";
+						 File targetFile = new File(errorFilePath);
+							if (!targetFile.exists()) {
+								targetFile.mkdirs();
+							}
+							// 将前台传过来的file文件写到targetFile中.		
+						 file[i].transferTo(targetFile);		
+					}	
+				}
 				is.close();
 				wb.close();
 				
@@ -203,7 +310,7 @@ public class UploadSpcDataService {
 				message += "NG:" + e.toString();
 			}
 			
-			message+="文檔:"+fileName+" 插入了"+totalRecord+"條記錄\n";
+			message+="   文檔:"+fileName+" 插入了"+totalRecord+"條記錄\n";
 			
 		/*	if(i==file.length-1) {
 				return message;
